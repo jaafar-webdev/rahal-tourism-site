@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
    return (
       <html>
-         <body className={`${ibmPlexSansArabic.className} `}>{children}</body>
+         <body className={`${ibmPlexSansArabic.className} `}>
+            {children}
+         </body>
       </html>
    );
 }
