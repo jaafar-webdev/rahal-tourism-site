@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "@/app/globals.css";
+import { I18nProvider } from "../context/I18nProvider";
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
    subsets: ["arabic"],
@@ -18,9 +19,9 @@ export default function RootLayout({
    children: React.ReactNode;
 }) {
    return (
-      <html>
+      <html data-theme="">
          <body className={`${ibmPlexSansArabic.className} `}>
-            {children}
+            <I18nProvider>{children}</I18nProvider>
          </body>
       </html>
    );
