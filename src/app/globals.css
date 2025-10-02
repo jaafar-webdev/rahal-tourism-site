@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* تعريف المتغيرات الأساسية */
 @theme {
    --color-primary: #ffeb3b;
    --color-secondary: #000080;
@@ -8,7 +7,6 @@
    --color-foreground: #1f2937;
 }
 
-/* الوضع الداكن */
 :where([data-theme="dark"]) {
    --color-primary: #ffd54f;
    --color-secondary: #64b5f6;
@@ -16,7 +14,6 @@
    --color-foreground: #f9fafb;
 }
 
-/* تطبيق الخلفية والنص العام */
 html,
 body {
    @apply bg-background text-foreground transition-colors duration-300;

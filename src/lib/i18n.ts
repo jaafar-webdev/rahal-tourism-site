@@ -1,4 +1,3 @@
-// src/lib/i18n.ts
 import ar from "../../locales/ar.json";
 import en from "../../locales/en.json";
 

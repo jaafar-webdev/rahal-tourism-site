@@ -8,7 +8,7 @@ export const categories: Category[] = [
       trips: [
          {
             id: "dahab",
-            imageUrl: "/images/dahab.jpg",
+            imageUrl: "/images/dahb.jpg",
             nameAr: "رحلة دهب",
             nameEn: "Dahab Trip",
             durationAr: "4 أيام و5 ليالٍ",
@@ -24,7 +24,7 @@ export const categories: Category[] = [
          },
          {
             id: "north-coast",
-            imageUrl: "/images/north-coast.jpg",
+            imageUrl: "/images/sahel.jpg",
             nameAr: "رحلة الساحل الشمالي",
             nameEn: "North Coast Trip",
             durationAr: "3 أيام و4 ليالٍ",
@@ -40,7 +40,7 @@ export const categories: Category[] = [
          },
          {
             id: "el-gouna",
-            imageUrl: "/images/el-gouna.jpg",
+            imageUrl: "/images/elgona.jpg",
             nameAr: "رحلة الجونة",
             nameEn: "El Gouna Trip",
             durationAr: "5 أيام و6 ليالٍ",
@@ -77,7 +77,7 @@ export const categories: Category[] = [
          },
          {
             id: "el-galala-honeymoon",
-            imageUrl: "/images/el-galala.jpg",
+            imageUrl: "/images/elgalala.jpg",
             nameAr: "عرض شهر العسل في الجلالة",
             nameEn: "Honeymoon Offer in El Galala",
             durationAr: "4 أيام و5 ليالٍ",
@@ -92,7 +92,7 @@ export const categories: Category[] = [
          },
          {
             id: "sharm-grand-plaza-honeymoon",
-            imageUrl: "/images/sharm.jpg",
+            imageUrl: "/images/sharm-grand-plaza.jpg",
             nameAr: "عرض شهر العسل في شرم جراند بلازا",
             nameEn: "Honeymoon Offer in Sharm Grand Plaza",
             durationAr: "6 أيام و7 ليالٍ",

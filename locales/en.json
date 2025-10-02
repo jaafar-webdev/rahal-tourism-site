@@ -1,3 +1,5 @@
 {
-   "welcome": "Welcome to our Tourism Site"
+   "welcome": "Welcome to our Tourism Site",
+   "available_trips": "Available Trips",
+   "show_details": "Show Details"
 }
