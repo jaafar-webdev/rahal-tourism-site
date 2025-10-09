@@ -9,3 +9,5 @@ const dictionaries = {
 export const getTranslations = (locale: keyof typeof dictionaries) => {
    return dictionaries[locale];
 };
+
+export type Translations = ReturnType<typeof getTranslations>;
