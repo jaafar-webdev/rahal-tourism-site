@@ -1,8 +1,9 @@
 import Header from "../../components/Header";
 import TripSection from "@/components/TripSection";
-import { categories } from "@/app/data/categories";
+import { getCategories } from "@/lib/data/get-categories";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+   const categories = await getCategories();
    return (
       <main>
          <Header params={params} />
@@ -10,3 +11,5 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </main>
    );
 }
+
+export const revalidate = 3600; 

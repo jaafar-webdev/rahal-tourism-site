@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import { getTranslations } from "@/lib/i18n";
 
 export default async function Header({

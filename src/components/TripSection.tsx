@@ -6,8 +6,7 @@ import { Category } from "@/types/category";
 import React from 'react';
 
 export default function TripSection({ categories }: { categories: Category[] }) {
-  const { locale } = useI18n(); // This line is not strictly needed here as useLocalizedField handles locale
-  const { t } = useI18n(); // For static translations like "Show Details"
+  const { t } = useI18n(); 
 
   const showDetailsText = t.show_details;
 

@@ -4,44 +4,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocalizedField } from "@/lib/useLocalizedField";
 import Trip from "@/types/trip";
-
+import { useI18n } from "@/app/context/I18nProvider";
 
 interface TripCardProps {
    trip: Trip;
    showDetailsText: string;
 }
 
-const TripCard: React.FC<TripCardProps> = ({
-   trip,
-   showDetailsText,
-}) => {
-    const name = useLocalizedField(trip.nameAr, trip.nameEn);
-    const duration = useLocalizedField(trip.durationAr, trip.durationEn);
-    const accommodation = useLocalizedField(trip.accommodationAr, trip.accommodationEn);
-    const description = useLocalizedField(trip.descriptionAr, trip.descriptionEn);
-
+const TripCard: React.FC<TripCardProps> = ({ trip, showDetailsText }) => {
+   const name = useLocalizedField(trip.nameAr, trip.nameEn);
+   const duration = useLocalizedField(trip.durationAr, trip.durationEn);
+   const accommodation = useLocalizedField(
+      trip.accommodationAr,
+      trip.accommodationEn
+   );
+   const description = useLocalizedField(
+      trip.descriptionAr,
+      trip.descriptionEn
+   );
+   const { locale } = useI18n();
    return (
       <div className="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800">
          <div className="relative h-56">
-            <Image src={trip.imageUrl} alt={name} layout="fill" objectFit="cover" />
+            <Image
+               src={trip.imageUrl}
+               alt={name}
+               fill
+               className="object-cover"
+            />
          </div>
          <div className="p-4">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                {name}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-               {duration}
-            </p>
+            <p className="text-gray-600 dark:text-gray-400">{duration}</p>
             <p className="text-gray-600 dark:text-gray-400">
                {trip.price.amount} {trip.price.currency}
             </p>
-            <p className="text-gray-600 dark:text-gray-400">
-               {accommodation}
-            </p>
-            <p className="text-gray-600 dark:text-gray-400">
-               {description}
-            </p>
-            <Link href={`/trips/${trip.id}`} passHref>
+            <p className="text-gray-600 dark:text-gray-400">{accommodation}</p>
+            <p className="text-gray-600 dark:text-gray-400">{description}</p>
+            <Link href={`/${locale}/trips/${trip.id}`}>
                <button className="mt-4 w-full bg-primary text-secondary font-bold py-2 px-4 rounded hover:bg-yellow-400 transition-colors cursor-pointer">
                   {showDetailsText}
                </button>

@@ -19,7 +19,7 @@ export default function RootLayout({
    children: React.ReactNode;
 }) {
    return (
-      <html data-theme="">
+      <html data-theme="dark" dir="rtl">
          <body className={`${ibmPlexSansArabic.className} `}>
             <I18nProvider>{children}</I18nProvider>
          </body>
