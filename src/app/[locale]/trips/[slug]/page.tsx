@@ -5,7 +5,7 @@ import Trip from "@/types/trip";
 import Image from "next/image";
 import Link from "next/link";
 
-const meetingPoints = ["القاهرة - ميدان التحرير", "الإسكندرية - محطة الرمل"];
+const meetingPoints = ["القاهرة - ميدان التحرير", "الإسكندرية - محطة الرمل", "أسوان - كورنيش النيل"];
 
 export default async function TripDetailsPage({
    params,
@@ -30,7 +30,7 @@ export default async function TripDetailsPage({
    const description =
       locale === "ar" ? trip.descriptionAr : trip.descriptionEn;
    const duration = locale === "ar" ? trip.durationAr : trip.durationEn;
-   const accommodation =
+   const accommodation=
       locale === "ar" ? trip.accommodationAr : trip.accommodationEn;
    const priceText = trip.price.amount;
    const fullPrice = `${priceText} ${trip.price.currency}`;
@@ -40,9 +40,9 @@ export default async function TripDetailsPage({
          <div className="mb-8">
             <Link
                href={`/${locale}`}
-               className="text-secondary hover:underline"
+               className="bg-primary text-secondary rounded-lg px-2 py-1"
             >
-               &larr; {t.back_to_all_trips}
+                {t.back_to_all_trips}
             </Link>
          </div>
          <div className="grid md:grid-cols-2 gap-8">
@@ -83,7 +83,7 @@ export default async function TripDetailsPage({
                      </p>
                      <p>
                         <span className="font-bold text-gray-900 dark:text-white">
-                           موعد الذهاب:
+                          {t.Departure_time}:
                         </span>{" "}
                         {trip.departureDate}
                      </p>

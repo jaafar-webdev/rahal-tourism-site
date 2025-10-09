@@ -9,8 +9,8 @@ export default async function Header({
    const t = getTranslations(locale as "ar" | "en");
 
    return (
-      <div className="flex flex-col justify-center items-center">
-         <h1 className="text-4xl font-bold text-primary mb-12">{t.welcome}</h1>
+      <div className="flex flex-col justify-center items-center mt-3">
+         <h1 className="text-2xl md:text-4xl font-bold text-primary mb-12">{t.welcome}</h1>
       </div>
    );
 }

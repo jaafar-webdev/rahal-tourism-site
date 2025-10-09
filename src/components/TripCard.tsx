@@ -8,10 +8,10 @@ import { useI18n } from "@/app/context/I18nProvider";
 
 interface TripCardProps {
    trip: Trip;
-   showDetailsText: string;
 }
 
-const TripCard: React.FC<TripCardProps> = ({ trip, showDetailsText }) => {
+const TripCard = ({ trip  } : TripCardProps) => {
+   const { t, locale } = useI18n();
    const name = useLocalizedField(trip.nameAr, trip.nameEn);
    const duration = useLocalizedField(trip.durationAr, trip.durationEn);
    const accommodation = useLocalizedField(
@@ -22,7 +22,6 @@ const TripCard: React.FC<TripCardProps> = ({ trip, showDetailsText }) => {
       trip.descriptionAr,
       trip.descriptionEn
    );
-   const { locale } = useI18n();
    return (
       <div className="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800">
          <div className="relative h-56">
@@ -30,6 +29,7 @@ const TripCard: React.FC<TripCardProps> = ({ trip, showDetailsText }) => {
                src={trip.imageUrl}
                alt={name}
                fill
+               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                className="object-cover"
             />
          </div>
@@ -45,7 +45,7 @@ const TripCard: React.FC<TripCardProps> = ({ trip, showDetailsText }) => {
             <p className="text-gray-600 dark:text-gray-400">{description}</p>
             <Link href={`/${locale}/trips/${trip.id}`}>
                <button className="mt-4 w-full bg-primary text-secondary font-bold py-2 px-4 rounded hover:bg-yellow-400 transition-colors cursor-pointer">
-                  {showDetailsText}
+                  {t.show_details}
                </button>
             </Link>
          </div>
