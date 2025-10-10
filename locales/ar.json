@@ -66,5 +66,8 @@
   "sharm_grand_plaza_accommodation": "منتجع فاخر شامل كليًا",
   "sharm_grand_plaza_description": "تجربة لا تُنسى لشهر العسل في قلب شرم الشيخ.",
   "trip_not_found": "لم يتم العثور على رحلة",
-  "Departure_time" : "موعد المغادرة"
+  "Departure_time": "موعد المغادرة",
+  "payment_method": "طريقة الدفع",
+  "credit_card": "بطاقة ائتمان",
+  "paypal": "باي بال"
 }

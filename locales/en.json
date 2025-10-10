@@ -66,5 +66,8 @@
   "sharm_grand_plaza_accommodation": "All-inclusive luxury resort",
   "sharm_grand_plaza_description": "An unforgettable honeymoon experience in the heart of Sharm El Sheikh.",
   "trip_not_found": "Trip not found",
-  "Departure_time": "Departure time"
+  "Departure_time": "Departure time",
+  "payment_method": "Payment Method",
+  "credit_card": "Credit Card",
+  "paypal": "PayPal"
 }
