@@ -17,7 +17,7 @@ const TripImage = ({ imageUrl, alt }: { imageUrl: string; alt: string }) => (
       alt={alt}
       fill
       className="object-cover"
-      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
     />
   </div>
 );
@@ -35,7 +35,7 @@ const DetailItem = ({
   </p>
 );
 
-const TripInfo = ({ trip, t }: TripDetailsContentProps) => {
+const TripInfo = ({ trip }: TripDetailsContentProps) => {
   const name = useLocalizedField(trip.nameAr, trip.nameEn);
   const description = useLocalizedField(trip.descriptionAr, trip.descriptionEn);
 
@@ -75,11 +75,10 @@ export default function TripDetailsContent({
 
   return (
     <div>
-
       <TripImage imageUrl={trip.imageUrl} alt={name} />
       <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <TripInfo trip={trip} t={t} />
-      <TripDetailsGrid trip={trip} t={t} />
+        <TripInfo trip={trip} t={t} />
+        <TripDetailsGrid trip={trip} t={t} />
       </div>
     </div>
   );

@@ -2,20 +2,20 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-   --color-primary: #ffeb3b;
-   --color-secondary: #000080;
-   --color-background: #ffffff;
-   --color-foreground: #1f2937;
+  --color-primary: #ffeb3b;
+  --color-secondary: #000080;
+  --color-background: #ffffff;
+  --color-foreground: #1f2937;
 }
 
 :where([data-theme="dark"]) {
-   --color-primary: #ffd54f;
-   --color-secondary: #000205;
-   --color-background: #111827;
-   --color-foreground: #f9fafb;
+  --color-primary: #ffd54f;
+  --color-secondary: #000205;
+  --color-background: #111827;
+  --color-foreground: #f9fafb;
 }
 
 html,
 body {
-   @apply bg-background text-foreground transition-colors duration-300;
+  @apply bg-background text-foreground transition-colors duration-300;
 }

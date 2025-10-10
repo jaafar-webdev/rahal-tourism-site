@@ -117,7 +117,7 @@ const PaymentForm = ({ price }: { price: string }) => {
                className={`px-4 py-2 rounded-lg ${
                   paymentMethod === "e-wallet"
                      ? "bg-primary text-secondary"
-                     : "bg-gray-200"
+                     : "bg-gray-200 dark:bg-gray-600 cursor-pointer"
                }`}
             >
                {t.e_wallet}
@@ -128,7 +128,7 @@ const PaymentForm = ({ price }: { price: string }) => {
                className={`px-4 py-2 rounded-lg ${
                   paymentMethod === "bank-transfer"
                      ? "bg-primary text-secondary"
-                     : "bg-gray-200"
+                     : "bg-gray-200 dark:bg-gray-600 cursor-pointer"
                }`}
             >
                {t.bank_transfer}
@@ -139,7 +139,7 @@ const PaymentForm = ({ price }: { price: string }) => {
                className={`px-4 py-2 rounded-lg ${
                   paymentMethod === "visa"
                      ? "bg-primary text-secondary"
-                     : "bg-gray-200"
+                     : "bg-gray-200 dark:bg-gray-600 cursor-pointer"
                }`}
             >
                {t.visa_mastercard}

@@ -1,9 +1,9 @@
 "use client";
 
-import PaymentForm from "@/components/PaymentForm";
 import Trip from "@/types/trip";
 
 import { Translations } from "@/lib/i18n";
+import PaymentForm from "./PaymentForm";
 
 interface BookingFormProps {
   trip: Trip;
@@ -11,7 +11,11 @@ interface BookingFormProps {
   meetingPoints: string[];
 }
 
-export default function BookingForm({ trip, t, meetingPoints }: BookingFormProps) {
+export default function BookingForm({
+  trip,
+  t,
+  meetingPoints,
+}: BookingFormProps) {
   const fullPrice = `${trip.price.amount} ${trip.price.currency}`;
 
   return (

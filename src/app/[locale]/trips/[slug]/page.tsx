@@ -7,13 +7,15 @@ import TripDetailsContent from "@/components/TripDetailsContent";
 import { Translations } from "@/lib/i18n";
 
 const TripNotFound = ({ t }: { t: Translations }) => (
-  <div className="text-center py-12">{t.trip_not_found || "Trip not found"}</div>
+  <div className="text-center py-12">
+    {t.trip_not_found || "Trip not found"}
+  </div>
 );
 
 export default async function TripDetailsPage({
   params,
 }: {
-  params:Promise< { locale: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
   const t = getTranslations(locale as "ar" | "en");
