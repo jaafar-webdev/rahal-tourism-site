@@ -1,6 +1,6 @@
 import React from "react";
-import InputField from "../form/InputField";
-import SelectField from "../form/SelectField";
+import InputField from "../../components/form/InputField";
+import SelectField from "../../components/form/SelectField";
 import { Translations } from "@/lib/i18n";
 
 interface TripDetailsFormProps {

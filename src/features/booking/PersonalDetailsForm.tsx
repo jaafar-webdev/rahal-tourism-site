@@ -1,5 +1,5 @@
 import React from "react";
-import InputField from "../form/InputField";
+import InputField from "../../components/form/InputField";
 import { Translations } from "@/lib/i18n";
 
 interface PersonalDetailsFormProps {

@@ -1,5 +1,5 @@
 import React from "react";
-import SelectField from "../form/SelectField";
+import SelectField from "../../components/form/SelectField";
 import { Translations } from "@/lib/i18n";
 
 interface PaymentMethodSelectorProps {

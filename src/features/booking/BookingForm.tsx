@@ -2,10 +2,10 @@
 
 import Trip from "@/types/trip";
 import { Translations } from "@/lib/i18n";
-import PersonalDetailsForm from "./booking/PersonalDetailsForm";
-import TripDetailsForm from "./booking/TripDetailsForm";
-import PaymentMethodSelector from "./booking/PaymentMethodSelector";
-import PaymentForm from "./PaymentForm";
+import PersonalDetailsForm from "./PersonalDetailsForm";
+import TripDetailsForm from "./TripDetailsForm";
+import PaymentMethodSelector from "./PaymentMethodSelector";
+import PaymentForm from "@/components/PaymentForm";
 
 interface BookingFormProps {
   trip: Trip;

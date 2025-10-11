@@ -1,10 +1,10 @@
 import { getCategories, meetingPoints } from "@/lib/data/get-categories";
 import { getTranslations } from "@/lib/i18n";
 import { BackToTripsLink } from "@/components/BackToTripsLink";
-import BookingForm from "@/components/BookingForm";
 import { findTripBySlug } from "@/lib/hooks/useTrip";
-import TripDetailsContent from "@/components/TripDetailsContent";
+import TripDetailsContent from "@/features/trip-details/TripDetailsContent";
 import { Translations } from "@/lib/i18n";
+import BookingForm from "@/features/booking/BookingForm";
 
 const TripNotFound = ({ t }: { t: Translations }) => (
   <div className="text-center py-12">
