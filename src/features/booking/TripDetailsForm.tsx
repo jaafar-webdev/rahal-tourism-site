@@ -2,6 +2,7 @@ import React from "react";
 import InputField from "../../components/form/InputField";
 import SelectField from "../../components/form/SelectField";
 import { Translations } from "@/lib/i18n";
+import { useBookingStore } from "./store/booking-store";
 
 interface TripDetailsFormProps {
   t: Translations;
@@ -13,6 +14,9 @@ interface TripDetailsFormProps {
  * @param {TripDetailsFormProps} props - The props for the component.
  */
 const TripDetailsForm = ({ t, meetingPoints }: TripDetailsFormProps) => {
+  const { guests, gatheringPlace, setGuests, setGatheringPlace } =
+    useBookingStore();
+
   const meetingPointOptions = meetingPoints.map((point) => ({
     value: point,
     label: point,
@@ -25,14 +29,17 @@ const TripDetailsForm = ({ t, meetingPoints }: TripDetailsFormProps) => {
         id="guests"
         type="number"
         min="1"
-        defaultValue="2"
         required
+        value={guests}
+        onChange={(e) => setGuests(parseInt(e.target.value, 10))}
       />
       <SelectField
         label={t.meeting_point}
         id="meeting-point"
         options={meetingPointOptions}
         required
+        value={gatheringPlace}
+        onChange={(e) => setGatheringPlace(e.target.value)}
       />
     </>
   );
