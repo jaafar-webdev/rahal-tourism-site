@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Translations } from "@/lib/i18n";
+import { Button } from "@/components/ui/Button";
 
 interface ConfirmationSuccessProps {
   t: Translations;
@@ -31,11 +32,10 @@ const ConfirmationSuccess = ({ t }: ConfirmationSuccessProps) => {
       <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
         {t.Contact_Confirmation}
       </p>
-      <Link
-        href="/ar"
-        className="px-8 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors duration-200"
-      >
-        {t.Back_to_Homepage}
+      <Link href="/ar">
+        <Button variant="primary" size="lg">
+          {t.Back_to_Homepage}
+        </Button>
       </Link>
     </div>
   );

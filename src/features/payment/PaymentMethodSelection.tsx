@@ -1,6 +1,7 @@
 import React from "react";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 import { Translations } from "@/lib/i18n";
+import { Button } from "@/components/ui/Button";
 
 interface PaymentMethodSelectionProps {
   onNext: () => void;
@@ -86,23 +87,17 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
       </div>
 
       <div className="flex justify-between">
-        <button
-          onClick={onBack}
-          className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-md font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-        >
+        <Button onClick={onBack} variant="outline" size="lg">
           {t.Back}
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={onNext}
           disabled={!isMethodSelected}
-          className={`px-6 py-3 rounded-md font-medium text-white ${
-            isMethodSelected
-              ? "bg-indigo-600 hover:bg-indigo-700"
-              : "bg-gray-400 cursor-not-allowed"
-          } transition-colors duration-200`}
+          variant="primary"
+          size="lg"
         >
           {t.Next}
-        </button>
+        </Button>
       </div>
     </div>
   );

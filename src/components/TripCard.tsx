@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLocalizedField } from "@/lib/useLocalizedField";
 import Trip from "@/types/trip";
 import { useI18n } from "@/app/context/I18nProvider";
+import { Button } from "./ui/Button";
 
 interface TripCardProps {
   trip: Trip;
@@ -42,9 +43,9 @@ const TripCard = ({ trip }: TripCardProps) => {
         <p className="text-gray-600 dark:text-gray-400">{accommodation}</p>
         <p className="text-gray-600 dark:text-gray-400">{description}</p>
         <Link href={`/${locale}/trips/${trip.id}`}>
-          <button className="mt-4 w-full bg-primary text-secondary font-bold py-2 px-4 rounded hover:bg-yellow-400 transition-colors cursor-pointer">
+          <Button variant="primary" size="md" fullWidth>
             {t.show_details}
-          </button>
+          </Button>
         </Link>
       </div>
     </div>

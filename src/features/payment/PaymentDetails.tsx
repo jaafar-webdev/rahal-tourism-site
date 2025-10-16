@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 import InputField from "@/components/form/InputField";
 import { Translations } from "@/lib/i18n";
+import { Button } from "@/components/ui/Button";
 
 interface PaymentDetailsProps {
   onNext: () => void;
@@ -145,18 +146,12 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
       </div>
 
       <div className="flex justify-between">
-        <button
-          onClick={onBack}
-          className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-md font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-        >
+        <Button onClick={onBack} variant="outline" size="lg">
           {t.Back}
-        </button>
-        <button
-          onClick={handleSubmit}
-          className="px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors duration-200"
-        >
+        </Button>
+        <Button onClick={handleSubmit} variant="primary" size="lg">
           {t.Next}
-        </button>
+        </Button>
       </div>
     </div>
   );

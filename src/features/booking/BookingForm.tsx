@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useCurrentLocale } from "next-i18n-router/client";
 import i18nConfig from "@/i18nConfig";
 import Trip from "@/types/trip";
+import { Button } from "@/components/ui/Button";
 
 interface BookingFormProps {
   t: Translations;
@@ -67,13 +68,15 @@ export default function BookingForm({
           register={register}
           errors={errors}
         />
-        <button
+        <Button
           type="submit"
+          variant="primary"
+          size="lg"
+          fullWidth
           disabled={isSubmitting}
-          className="w-full bg-primary text-secondary font-bold py-3 px-4 rounded-lg hover:bg-yellow-400 transition-colors mt-6 disabled:bg-gray-400"
         >
           {isSubmitting ? "Submitting..." : t.confirm_booking}
-        </button>
+        </Button>
       </form>
     </div>
   );

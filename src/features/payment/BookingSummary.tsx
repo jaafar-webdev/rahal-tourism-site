@@ -1,7 +1,7 @@
 import React from "react";
 import { BookingSummaryData } from "./types";
 import { useBookingStore } from "@/features/booking/store/booking-store";
-
+import { Button } from "@/components/ui/Button";
 import { Translations } from "@/lib/i18n";
 
 interface BookingSummaryProps {
@@ -112,17 +112,14 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
       </div>
 
       <div className="flex justify-end">
-        <button
+        <Button
           onClick={onNext}
           disabled={!isFormValid}
-          className={`px-6 py-3 rounded-md font-medium text-white ${
-            isFormValid
-              ? "bg-indigo-600 hover:bg-indigo-700"
-              : "bg-gray-400 cursor-not-allowed"
-          } transition-colors duration-200`}
+          variant="primary"
+          size="lg"
         >
           {t.Next}
-        </button>
+        </Button>
       </div>
     </div>
   );
