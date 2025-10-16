@@ -31,7 +31,7 @@ export default async function TripDetailsPage({
       <BackToTripsLink locale={locale} t={t} />
       <div className="grid md:grid-cols-2 gap-8">
         <TripDetailsContent trip={trip} t={t} />
-        <BookingForm t={t} meetingPoints={meetingPoints} />
+        <BookingForm t={t} meetingPoints={meetingPoints} trip={trip} />
       </div>
     </main>
   );

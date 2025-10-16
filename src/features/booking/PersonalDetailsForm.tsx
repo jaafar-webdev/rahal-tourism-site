@@ -1,10 +1,13 @@
 import React from "react";
 import InputField from "../../components/form/InputField";
 import { Translations } from "@/lib/i18n";
-import { useBookingStore } from "./store/booking-store";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { BookingFormData } from "./schemas/booking-schema";
 
 interface PersonalDetailsFormProps {
   t: Translations;
+  register: UseFormRegister<BookingFormData>;
+  errors: FieldErrors<BookingFormData>;
 }
 
 /**
@@ -12,35 +15,29 @@ interface PersonalDetailsFormProps {
  * @param {PersonalDetailsFormProps} props - The props for the component.
  */
 
-const PersonalDetailsForm = ({ t }: PersonalDetailsFormProps) => {
-  const { name, email, phoneNumber, setName, setEmail, setPhoneNumber } =
-    useBookingStore();
-
+const PersonalDetailsForm = ({ t, register, errors }: PersonalDetailsFormProps) => {
   return (
     <>
       <InputField
         label={t.name}
         id="name"
         type="text"
-        required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        {...register("name")}
+        error={errors.name?.message}
       />
       <InputField
         label={t.email}
         id="email"
         type="email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        {...register("email")}
+        error={errors.email?.message}
       />
       <InputField
         label={t.phone}
         id="phone"
         type="tel"
-        required
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        {...register("phoneNumber")}
+        error={errors.phoneNumber?.message}
       />
     </>
   );

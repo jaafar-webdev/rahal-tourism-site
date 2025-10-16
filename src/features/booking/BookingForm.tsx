@@ -3,31 +3,55 @@
 import { Translations } from "@/lib/i18n";
 import PersonalDetailsForm from "./PersonalDetailsForm";
 import TripDetailsForm from "./TripDetailsForm";
-import PaymentMethodSelector from "./PaymentMethodSelector";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bookingSchema, BookingFormData } from "./schemas/booking-schema";
 import { useBookingStore } from "./store/booking-store";
+import { useRouter } from "next/navigation";
+import { useCurrentLocale } from "next-i18n-router/client";
+import i18nConfig from "@/i18nConfig";
+import Trip from "@/types/trip";
 
 interface BookingFormProps {
   t: Translations;
   meetingPoints: string[];
+  trip: Trip;
 }
 
 /**
  * The main booking form component that aggregates personal details, trip details, and payment information.
  * @param {BookingFormProps} props - The props for the component.
  */
-export default function BookingForm({ t, meetingPoints }: BookingFormProps) {
-  const { name, email, phoneNumber, guests, gatheringPlace } =
-    useBookingStore();
+export default function BookingForm({
+  t,
+  meetingPoints,
+  trip,
+}: BookingFormProps) {
+  const router = useRouter();
+  const locale = useCurrentLocale(i18nConfig);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<BookingFormData>({
+    resolver: zodResolver(bookingSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      guests: 1,
+      gatheringPlace: "",
+    },
+  });
+  const { setBookingData, setTrip } = useBookingStore();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Booking data from store:", {
-      name,
-      email,
-      phoneNumber,
-      guests,
-      gatheringPlace,
+  const onSubmit = (data: BookingFormData) => {
+    setBookingData(data);
+    setTrip({
+      title: trip.nameEn,
+      price: trip.price.amount,
     });
+    router.push(`/${locale}/payment`);
   };
 
   return (
@@ -35,15 +59,20 @@ export default function BookingForm({ t, meetingPoints }: BookingFormProps) {
       <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
         {t.book_your_trip}
       </h2>
-      <form onSubmit={handleSubmit}>
-        <PersonalDetailsForm t={t} />
-        <TripDetailsForm t={t} meetingPoints={meetingPoints} />
-        <PaymentMethodSelector t={t} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <PersonalDetailsForm t={t} register={register} errors={errors} />
+        <TripDetailsForm
+          t={t}
+          meetingPoints={meetingPoints}
+          register={register}
+          errors={errors}
+        />
         <button
           type="submit"
-          className="w-full bg-primary text-secondary font-bold py-3 px-4 rounded-lg hover:bg-yellow-400 transition-colors mt-6"
+          disabled={isSubmitting}
+          className="w-full bg-primary text-secondary font-bold py-3 px-4 rounded-lg hover:bg-yellow-400 transition-colors mt-6 disabled:bg-gray-400"
         >
-          {t.confirm_booking}
+          {isSubmitting ? "Submitting..." : t.confirm_booking}
         </button>
       </form>
     </div>
