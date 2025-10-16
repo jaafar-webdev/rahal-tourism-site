@@ -5,7 +5,7 @@ import PersonalDetailsForm from "./PersonalDetailsForm";
 import TripDetailsForm from "./TripDetailsForm";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { bookingSchema, BookingFormData } from "./schemas/booking-schema";
+import { BookingFormData, bookingSchema } from "./schemas/booking-schema";
 import { useBookingStore } from "./store/booking-store";
 import { useRouter } from "next/navigation";
 import { useCurrentLocale } from "next-i18n-router/client";
@@ -33,16 +33,9 @@ export default function BookingForm({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      guests: 1,
-      gatheringPlace: "",
-    },
   });
   const { setBookingData, setTrip } = useBookingStore();
 
@@ -68,14 +61,8 @@ export default function BookingForm({
           register={register}
           errors={errors}
         />
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          fullWidth
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : t.confirm_booking}
+        <Button type="submit" variant="primary" size="lg" fullWidth>
+          {t.confirm_booking}
         </Button>
       </form>
     </div>
