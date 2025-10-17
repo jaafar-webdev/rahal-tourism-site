@@ -1,4 +1,5 @@
 "use client";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const SunIcon = () => (
@@ -26,53 +27,31 @@ const MoonIcon = () => (
 );
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const initialTheme = savedTheme === "dark" || (!savedTheme && prefersDark);
-    setIsDark(initialTheme);
-    document.documentElement.setAttribute(
-      "data-theme",
-      initialTheme ? "dark" : "light"
-    );
+    setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    document.documentElement.setAttribute(
-      "data-theme",
-      newTheme ? "dark" : "light"
-    );
-    localStorage.setItem("theme", newTheme ? "dark" : "light");
-  };
-
-  if (!isMounted) {
+  if (!mounted) {
     return (
-      <button
-        className="p-2 rounded-full bg-gray-200 text-gray-800"
-        aria-label="Toggle theme"
-      >
+      <button className="p-2 rounded-full bg-gray-200 text-gray-800">
         <div className="w-5 h-5"></div>
       </button>
     );
   }
 
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const isDark = currentTheme === "dark";
+
   return (
-    <div className="">
-      <button
-        onClick={toggleTheme}
-        className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none   focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-        aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-      >
-        {isDark ? <SunIcon /> : <MoonIcon />}
-      </button>
-    </div>
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-colors duration-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none "
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+    >
+      {isDark ? <SunIcon /> : <MoonIcon />}
+    </button>
   );
 }

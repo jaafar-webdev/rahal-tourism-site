@@ -6,6 +6,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { ThemeProvider } from "next-themes";
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
@@ -39,17 +40,23 @@ export default async function RootLayout({ children, params }: Props) {
     locale === "ar" ? ibmPlexSansArabic.className : nunitoSans.className;
 
   return (
-    <html lang={locale} dir={dir}>
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <body className={fontClassName}>
-        <NextIntlClientProvider messages={messages}>
-          <div className="px-3 pt-2 md:px-0 md:pt-0 md:absolute md:top-4 md:end-4 z-50">
-            <div className="flex justify-start items-center gap-1">
-              <ThemeToggle />
-              <LanguageSwitcher />
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+        >
+          <NextIntlClientProvider messages={messages}>
+            <div className="px-3 pt-2 md:px-0 md:pt-0 md:absolute md:top-4 md:end-4 z-50">
+              <div className="flex justify-start items-center gap-1">
+                <ThemeToggle />
+                <LanguageSwitcher />
+              </div>
             </div>
-          </div>
-          {children}
-        </NextIntlClientProvider>
+            {children}
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
