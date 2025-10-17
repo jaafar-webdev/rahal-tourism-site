@@ -1,16 +1,12 @@
 import { getCategories, meetingPoints } from "@/lib/data/get-categories";
-import { getTranslations } from "@/lib/i18n";
 import { BackToTripsLink } from "@/components/BackToTripsLink";
 import { findTripBySlug } from "@/lib/hooks/useTrip";
 import TripDetailsContent from "@/features/trip-details/TripDetailsContent";
-import { Translations } from "@/lib/i18n";
 import BookingForm from "@/features/booking/BookingForm";
 
-const TripNotFound = ({ t }: { t: Translations }) => (
-  <div className="text-center py-12">
-    {t.trip_not_found || "Trip not found"}
-  </div>
-);
+const TripNotFound = () => {
+  return <div className="text-center py-12">Trip not found</div>;
+};
 
 export default async function TripDetailsPage({
   params,
@@ -18,20 +14,25 @@ export default async function TripDetailsPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const t = getTranslations(locale as "ar" | "en");
+  const validLocale = locale as "ar" | "en";
+
   const categories = await getCategories();
   const trip = findTripBySlug(categories, slug);
 
   if (!trip) {
-    return <TripNotFound t={t} />;
+    return <TripNotFound />;
   }
 
   return (
     <main className="container mx-auto p-4 md:p-8">
-      <BackToTripsLink locale={locale} t={t} />
+      <BackToTripsLink locale={validLocale} />
       <div className="grid md:grid-cols-2 gap-8">
-        <TripDetailsContent trip={trip} t={t} />
-        <BookingForm t={t} meetingPoints={meetingPoints} trip={trip} />
+        <TripDetailsContent trip={trip} />
+        <BookingForm
+          meetingPoints={meetingPoints}
+          trip={trip}
+          locale={validLocale}
+        />
       </div>
     </main>
   );

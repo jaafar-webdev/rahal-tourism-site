@@ -1,39 +1,40 @@
 import React from "react";
 import InputField from "../../components/form/InputField";
-import { Translations } from "@/lib/i18n";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { BookingFormData } from "./schemas/booking-schema";
 
+// استيراد النوع الصحيح
+import { useTranslations } from "next-intl";
+
 interface PersonalDetailsFormProps {
-  t: Translations;
+  t: ReturnType<typeof useTranslations>;
   register: UseFormRegister<BookingFormData>;
   errors: FieldErrors<BookingFormData>;
 }
 
-/**
- * A form component for collecting personal details like name, email, and phone.
- * @param {PersonalDetailsFormProps} props - The props for the component.
- */
-
-const PersonalDetailsForm = ({ t, register, errors }: PersonalDetailsFormProps) => {
+const PersonalDetailsForm = ({
+  t,
+  register,
+  errors,
+}: PersonalDetailsFormProps) => {
   return (
     <>
       <InputField
-        label={t.name}
+        label={t("name")}
         id="name"
         type="text"
         {...register("name")}
         error={errors.name?.message}
       />
       <InputField
-        label={t.email}
+        label={t("email")}
         id="email"
         type="email"
         {...register("email")}
         error={errors.email?.message}
       />
       <InputField
-        label={t.phone}
+        label={t("phone")}
         id="phone"
         type="tel"
         {...register("phoneNumber")}

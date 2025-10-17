@@ -1,21 +1,19 @@
 import React from "react";
 import InputField from "../../components/form/InputField";
 import SelectField from "../../components/form/SelectField";
-import { Translations } from "@/lib/i18n";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { BookingFormData } from "./schemas/booking-schema";
 
+// استيراد النوع الصحيح
+import { useTranslations } from "next-intl";
+
 interface TripDetailsFormProps {
-  t: Translations;
+  t: ReturnType<typeof useTranslations>;
   meetingPoints: string[];
   register: UseFormRegister<BookingFormData>;
   errors: FieldErrors<BookingFormData>;
 }
 
-/**
- * A form component for trip-specific details like number of guests and meeting point.
- * @param {TripDetailsFormProps} props - The props for the component.
- */
 const TripDetailsForm = ({
   t,
   meetingPoints,
@@ -30,7 +28,7 @@ const TripDetailsForm = ({
   return (
     <>
       <InputField
-        label={t.guests}
+        label={t("guests")}
         id="guests"
         type="number"
         min="1"
@@ -38,7 +36,7 @@ const TripDetailsForm = ({
         error={errors.guests?.message}
       />
       <SelectField
-        label={t.meeting_point}
+        label={t("meeting_point")}
         id="meeting-point"
         options={meetingPointOptions}
         {...register("gatheringPlace")}

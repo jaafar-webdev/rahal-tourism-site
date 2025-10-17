@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { Translations } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";
 
 interface ConfirmationSuccessProps {
-  t: Translations;
+  t: (key: string) => string;
 }
 
 const ConfirmationSuccess = ({ t }: ConfirmationSuccessProps) => {
@@ -27,14 +26,14 @@ const ConfirmationSuccess = ({ t }: ConfirmationSuccessProps) => {
         </svg>
       </div>
       <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-        {t.Order_Received_Successfully}
+        {t("Order_Received_Successfully")}
       </h2>
       <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
-        {t.Contact_Confirmation}
+        {t("Contact_Confirmation")}
       </p>
       <Link href="/ar">
         <Button variant="primary" size="lg">
-          {t.Back_to_Homepage}
+          {t("Back_to_Homepage")}
         </Button>
       </Link>
     </div>

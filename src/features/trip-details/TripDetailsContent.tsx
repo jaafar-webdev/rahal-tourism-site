@@ -1,13 +1,11 @@
 "use client";
 
 import Trip from "@/types/trip";
-import { Translations } from "@/lib/i18n";
-import { useLocalizedField } from "@/lib/useLocalizedField";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 
 interface TripDetailsContentProps {
   trip: Trip;
-  t: Translations;
 }
 
 const TripImage = ({ imageUrl, alt }: { imageUrl: string; alt: string }) => (
@@ -35,50 +33,32 @@ const DetailItem = ({
   </p>
 );
 
-const TripInfo = ({ trip }: TripDetailsContentProps) => {
-  const name = useLocalizedField(trip.nameAr, trip.nameEn);
-  const description = useLocalizedField(trip.descriptionAr, trip.descriptionEn);
+export default function TripDetailsContent({ trip }: TripDetailsContentProps) {
+  const t = useTranslations();
+  const locale = useLocale();
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-        {name}
-      </h1>
-      <p className="text-gray-600 dark:text-gray-400 mt-2">{description}</p>
-    </div>
-  );
-};
-
-const TripDetailsGrid = ({ trip, t }: TripDetailsContentProps) => {
-  const duration = useLocalizedField(trip.durationAr, trip.durationEn);
-  const accommodation = useLocalizedField(
-    trip.accommodationAr,
-    trip.accommodationEn
-  );
+  const name = locale === "ar" ? trip.nameAr : trip.nameEn;
+  const description = locale === "ar" ? trip.descriptionAr : trip.descriptionEn;
+  const duration = locale === "ar" ? trip.durationAr : trip.durationEn;
+  const accommodation =
+    locale === "ar" ? trip.accommodationAr : trip.accommodationEn;
   const price = `${trip.price.amount} ${trip.price.currency}`;
-
-  return (
-    <div className="mt-4 grid grid-cols-2 gap-4">
-      <DetailItem label={t.duration} value={duration} />
-      <DetailItem label={t.price} value={price} />
-      <DetailItem label={t.accommodation} value={accommodation} />
-      <DetailItem label={t.Departure_time} value={trip.departureDate} />
-    </div>
-  );
-};
-
-export default function TripDetailsContent({
-  trip,
-  t,
-}: TripDetailsContentProps) {
-  const name = useLocalizedField(trip.nameAr, trip.nameEn);
 
   return (
     <div>
       <TripImage imageUrl={trip.imageUrl} alt={name} />
       <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-        <TripInfo trip={trip} t={t} />
-        <TripDetailsGrid trip={trip} t={t} />
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          {name}
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">{description}</p>
+
+        <div className="mt-4 grid grid-cols-2 gap-4">
+          <DetailItem label={t("duration")} value={duration} />
+          <DetailItem label={t("price")} value={price} />
+          <DetailItem label={t("accommodation")} value={accommodation} />
+          <DetailItem label={t("Departure_time")} value={trip.departureDate} />
+        </div>
       </div>
     </div>
   );

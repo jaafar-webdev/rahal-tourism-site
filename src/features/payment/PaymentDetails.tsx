@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 import InputField from "@/components/form/InputField";
-import { Translations } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";
 
 interface PaymentDetailsProps {
   onNext: () => void;
   onBack: () => void;
-  t: Translations;
+  t: (key: string) => string;
 }
 
 const PaymentDetails: React.FC<PaymentDetailsProps> = ({
@@ -25,11 +24,11 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
     const newErrors: { bankAccount?: string; transactionNumber?: string } = {};
 
     if (!payment.bankAccount?.trim()) {
-      newErrors.bankAccount = t.Bank_Account_Required;
+      newErrors.bankAccount = t("Bank_Account_Required");
     }
 
     if (!payment.transactionNumber?.trim()) {
-      newErrors.transactionNumber = t.Transaction_Number_Required;
+      newErrors.transactionNumber = t("Transaction_Number_Required_Error");
     }
 
     setErrors(newErrors);
@@ -66,8 +65,8 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           {payment.method === "bank_transfer"
-            ? t.Transfer_Details
-            : t.E_Wallet_Details}
+            ? t("Transfer_Details")
+            : t("E_Wallet_Details")}
         </h2>
 
         <div className="space-y-6">
@@ -79,17 +78,17 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
                 </div>
                 <div>
                   <h3 className="font-semibold text-blue-900 dark:text-blue-200">
-                    {t.Bank_Account_Info}
+                    {t("Bank_Account_Info")}
                   </h3>
                   <p className="text-blue-700 dark:text-blue-300 mt-1">
-                    {t.Transfer_to_account}
+                    {t("Transfer_to_account")}
                   </p>
                   <div className="bg-white dark:bg-gray-900 rounded p-3 mt-2 font-mono text-sm">
                     <p className="dark:text-white">
-                      {t.Account_Number}: {getBankAccountNumber()}
+                      {t("Account_Number")}: {getBankAccountNumber()}
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {t.Bank_Name_Branch}
+                      {t("Bank_Name_Branch")}
                     </p>
                   </div>
                 </div>
@@ -101,8 +100,8 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
             <InputField
               label={
                 payment.method === "bank_transfer"
-                  ? t.Account_Number
-                  : t.E_Wallet_Number
+                  ? t("Account_Number")
+                  : t("E_Wallet_Number")
               }
               type="text"
               value={payment.bankAccount || ""}
@@ -110,19 +109,19 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               error={errors.bankAccount}
               placeholder={
                 payment.method === "bank_transfer"
-                  ? t.Enter_Bank_Account_Number
-                  : t.Enter_E_Wallet_Number
+                  ? t("Enter_Bank_Account_Number")
+                  : t("Enter_E_Wallet_Number")
               }
               required
             />
 
             <InputField
-              label={t.Transaction_Number}
+              label={t("Transaction_Number")}
               type="text"
               value={payment.transactionNumber || ""}
               onChange={(e) => handleTransactionNumberChange(e.target.value)}
               error={errors.transactionNumber}
-              placeholder={t.Enter_Transaction_Number}
+              placeholder={t("Enter_Transaction_Number")}
               required
             />
           </div>
@@ -134,10 +133,10 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               </div>
               <div>
                 <h3 className="font-semibold text-yellow-900 dark:text-yellow-200">
-                  {t.Important_Note}
+                  {t("Important_Note")}
                 </h3>
                 <p className="text-yellow-700 dark:text-yellow-300 mt-1">
-                  {t.Transaction_Number_Required}
+                  {t("Transaction_Number_Required")}
                 </p>
               </div>
             </div>
@@ -147,10 +146,10 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
 
       <div className="flex justify-between">
         <Button onClick={onBack} variant="outline" size="lg">
-          {t.Back}
+          {t("Back")}
         </Button>
         <Button onClick={handleSubmit} variant="primary" size="lg">
-          {t.Next}
+          {t("Next")}
         </Button>
       </div>
     </div>

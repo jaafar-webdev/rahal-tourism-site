@@ -5,15 +5,11 @@ import PaymentMethodSelection from "./PaymentMethodSelection";
 import PaymentDetails from "./PaymentDetails";
 import ConfirmationSuccess from "./ConfirmationSuccess";
 import { PaymentStep } from "./types";
+import { useTranslations } from "next-intl";
 
-import { Translations } from "@/lib/i18n";
-
-interface PaymentFlowProps {
-  t: Translations;
-}
-
-const PaymentFlow: React.FC<PaymentFlowProps> = ({ t }) => {
+const PaymentFlow: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<PaymentStep>("summary");
+  const t = useTranslations(); // استخدام useTranslations داخل Client Component
 
   const handleNext = () => {
     switch (currentStep) {

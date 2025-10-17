@@ -1,35 +1,29 @@
 "use client";
 
-import { Translations } from "@/lib/i18n";
 import PersonalDetailsForm from "./PersonalDetailsForm";
 import TripDetailsForm from "./TripDetailsForm";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookingFormData, bookingSchema } from "./schemas/booking-schema";
 import { useBookingStore } from "./store/booking-store";
-import { useRouter } from "next/navigation";
-import { useCurrentLocale } from "next-i18n-router/client";
-import i18nConfig from "@/i18nConfig";
 import Trip from "@/types/trip";
 import { Button } from "@/components/ui/Button";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface BookingFormProps {
-  t: Translations;
   meetingPoints: string[];
   trip: Trip;
+  locale: "ar" | "en";
 }
 
-/**
- * The main booking form component that aggregates personal details, trip details, and payment information.
- * @param {BookingFormProps} props - The props for the component.
- */
 export default function BookingForm({
-  t,
   meetingPoints,
   trip,
+  locale,
 }: BookingFormProps) {
+  const t = useTranslations();
   const router = useRouter();
-  const locale = useCurrentLocale(i18nConfig);
   const {
     register,
     handleSubmit,
@@ -42,27 +36,27 @@ export default function BookingForm({
   const onSubmit = (data: BookingFormData) => {
     setBookingData(data);
     setTrip({
-      title: trip.nameEn,
+      title: locale === "ar" ? trip.nameAr : trip.nameEn,
       price: trip.price.amount,
     });
-    router.push(`/${locale}/payment`);
+    router.push("/payment");
   };
 
   return (
     <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-        {t.book_your_trip}
+        {t("book_your_trip")}
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <PersonalDetailsForm t={t} register={register} errors={errors} />
+        <PersonalDetailsForm register={register} errors={errors} t={t} />
         <TripDetailsForm
-          t={t}
           meetingPoints={meetingPoints}
           register={register}
           errors={errors}
+          t={t}
         />
         <Button type="submit" variant="primary" size="lg" fullWidth>
-          {t.confirm_booking}
+          {t("confirm_booking")}
         </Button>
       </form>
     </div>

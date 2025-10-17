@@ -2,11 +2,10 @@ import React from "react";
 import { BookingSummaryData } from "./types";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 import { Button } from "@/components/ui/Button";
-import { Translations } from "@/lib/i18n";
 
 interface BookingSummaryProps {
   onNext: () => void;
-  t: Translations;
+  t: (key: string) => string;
 }
 
 const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
@@ -35,14 +34,14 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
     <div className="space-y-6">
       <div className="rounded-lg shadow-md p-6 bg-white dark:bg-gray-800">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          {t.Booking_Information}
+          {t("Booking_Information")}
         </h2>
 
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Full_Name}
+                {t("Full_Name")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.name}
@@ -50,7 +49,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Email_Address}
+                {t("Email_Address")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.email}
@@ -58,7 +57,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Phone_Number}
+                {t("Phone_Number")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.phoneNumber}
@@ -66,7 +65,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Number_of_Guests}
+                {t("Number_of_Guests")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.guests}
@@ -74,7 +73,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Gathering_Place}
+                {t("Gathering_Place")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.gatheringPlace}
@@ -86,14 +85,14 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          {t.Trip_Details}
+          {t("Trip_Details")}
         </h2>
 
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Trip_Name}
+                {t("Trip_Name")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
                 {bookingData.trip.title}
@@ -101,10 +100,10 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                {t.Total_Price}
+                {t("Total_Price")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
-                {bookingData.trip.price} {t.currency}
+                {bookingData.trip.price} {t("currency")}
               </p>
             </div>
           </div>
@@ -118,7 +117,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
           variant="primary"
           size="lg"
         >
-          {t.Next}
+          {t("Next")}
         </Button>
       </div>
     </div>

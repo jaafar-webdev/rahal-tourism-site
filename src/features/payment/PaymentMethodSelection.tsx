@@ -1,12 +1,11 @@
 import React from "react";
 import { useBookingStore } from "@/features/booking/store/booking-store";
-import { Translations } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";
 
 interface PaymentMethodSelectionProps {
   onNext: () => void;
   onBack: () => void;
-  t: Translations;
+  t: (key: string) => string;
 }
 
 const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
@@ -19,14 +18,14 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
   const paymentMethods = [
     {
       id: "bank_transfer",
-      name: t.Bank_Transfer,
-      description: t.Transfer_Details,
+      name: t("Bank_Transfer"),
+      description: t("Transfer_Details"),
       icon: "🏦",
     },
     {
       id: "ewallet",
-      name: t.E_Wallet,
-      description: t.E_Wallet_Details,
+      name: t("E_Wallet"),
+      description: t("E_Wallet_Details"),
       icon: "💳",
     },
   ];
@@ -41,7 +40,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
     <div className="space-y-6">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          {t.Choose_Payment_Method}
+          {t("Choose_Payment_Method")}
         </h2>
 
         <div className="space-y-4">
@@ -88,7 +87,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
 
       <div className="flex justify-between">
         <Button onClick={onBack} variant="outline" size="lg">
-          {t.Back}
+          {t("Back")}
         </Button>
         <Button
           onClick={onNext}
@@ -96,7 +95,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
           variant="primary"
           size="lg"
         >
-          {t.Next}
+          {t("Next")}
         </Button>
       </div>
     </div>

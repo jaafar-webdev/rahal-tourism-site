@@ -1,25 +1,23 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useLocalizedField } from "@/lib/useLocalizedField";
-import Trip from "@/types/trip";
-import { useI18n } from "@/app/context/I18nProvider";
+import { Category } from "@/types/category";
 import { Button } from "./ui/Button";
+import { useTranslations } from "next-intl";
 
 interface TripCardProps {
-  trip: Trip;
+  trip: Category["trips"][number];
+  locale: "ar" | "en";
 }
 
-const TripCard = ({ trip }: TripCardProps) => {
-  const { t, locale } = useI18n();
-  const name = useLocalizedField(trip.nameAr, trip.nameEn);
-  const duration = useLocalizedField(trip.durationAr, trip.durationEn);
-  const accommodation = useLocalizedField(
-    trip.accommodationAr,
-    trip.accommodationEn
-  );
-  const description = useLocalizedField(trip.descriptionAr, trip.descriptionEn);
+export default function TripCard({ trip, locale }: TripCardProps) {
+  const t = useTranslations();
+
+  const name = locale === "ar" ? trip.nameAr : trip.nameEn;
+  const duration = locale === "ar" ? trip.durationAr : trip.durationEn;
+  const accommodation =
+    locale === "ar" ? trip.accommodationAr : trip.accommodationEn;
+  const description = locale === "ar" ? trip.descriptionAr : trip.descriptionEn;
+
   return (
     <div className="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800">
       <div className="relative h-56">
@@ -44,12 +42,10 @@ const TripCard = ({ trip }: TripCardProps) => {
         <p className="text-gray-600 dark:text-gray-400">{description}</p>
         <Link href={`/${locale}/trips/${trip.id}`}>
           <Button variant="primary" size="md" fullWidth>
-            {t.show_details}
+            {t("show_details")}
           </Button>
         </Link>
       </div>
     </div>
   );
-};
-
-export default TripCard;
+}
