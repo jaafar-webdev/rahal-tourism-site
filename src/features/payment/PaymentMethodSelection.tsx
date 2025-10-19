@@ -68,14 +68,14 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
                 </div>
                 <div className="flex-shrink-0">
                   <div
-                    className={`w-5 h-5 rounded-full border-2 ${
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                       payment.method === method.id
                         ? "border-indigo-500 bg-indigo-500"
                         : "border-gray-300 dark:border-gray-600"
                     }`}
                   >
                     {payment.method === method.id && (
-                      <div className="w-3 h-3 bg-white rounded-full m-1"></div>
+                      <div className="w-3 h-3 bg-white rounded-full"></div>
                     )}
                   </div>
                 </div>
