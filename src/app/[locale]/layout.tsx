@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "next-themes";
+import Footer from "@/features/footer/Footer";
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
@@ -55,6 +56,7 @@ export default async function RootLayout({ children, params }: Props) {
               </div>
             </div>
             {children}
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

@@ -6,6 +6,9 @@
   --color-secondary: #000080;
   --color-background: #ffffff;
   --color-foreground: #1f2937;
+
+  --font-nunito-sans: "Nunito Sans", sans-serif;
+  --font-ibm-plex-sans-arabic: "IBM Plex Sans Arabic", sans-serif;
 }
 
 :where([data-theme="dark"]) {

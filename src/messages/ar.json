@@ -103,5 +103,14 @@
   "E_Wallet_Number": "رقم المحفظة",
   "Enter_Bank_Account_Number": "أدخل رقم الحساب البنكي",
   "Enter_E_Wallet_Number": "أدخل رقم المحفظة",
-  "Enter_Transaction_Number": "أدخل رقم العملية بعد التحويل"
+  "Enter_Transaction_Number": "أدخل رقم العملية بعد التحويل",
+  "footer": {
+    "brand": "رحال",
+    "privacy_policy": "سياسة الخصوصية",
+    "terms_of_service": "شروط الخدمة",
+    "contact_us": "اتصل بنا",
+    "about": "من نحن",
+    "rights_reserved": "جميع الحقوق محفوظة.",
+    "designed_with_love": "صمم بحب لمجتمعنا"
+  }
 }

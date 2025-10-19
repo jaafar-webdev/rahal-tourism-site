@@ -103,5 +103,14 @@
   "E_Wallet_Number": "E-Wallet Number",
   "Enter_Bank_Account_Number": "Enter Bank Account Number",
   "Enter_E_Wallet_Number": "Enter E-Wallet Number",
-  "Enter_Transaction_Number": "Enter Transaction Number after transfer"
+  "Enter_Transaction_Number": "Enter Transaction Number after transfer",
+  "footer": {
+    "brand": "Rahal",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "contact_us": "Contact Us",
+    "about": "About",
+    "rights_reserved": "All rights reserved.",
+    "designed_with_love": "Designed with ❤️ for our community"
+  }
 }
