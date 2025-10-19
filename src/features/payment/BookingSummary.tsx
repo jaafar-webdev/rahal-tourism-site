@@ -11,7 +11,6 @@ interface BookingSummaryProps {
 const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
   const { name, email, phoneNumber, guests, gatheringPlace, trip } =
     useBookingStore();
-  console.log(trip);
 
   const bookingData: BookingSummaryData = {
     name,

@@ -3,10 +3,7 @@ import { BackToTripsLink } from "@/components/BackToTripsLink";
 import { findTripBySlug } from "@/lib/hooks/useTrip";
 import TripDetailsContent from "@/features/trip-details/TripDetailsContent";
 import BookingForm from "@/features/booking/BookingForm";
-
-const TripNotFound = () => {
-  return <div className="text-center py-12">Trip not found</div>;
-};
+import { notFound } from "next/navigation";
 
 export default async function TripDetailsPage({
   params,
@@ -20,7 +17,7 @@ export default async function TripDetailsPage({
   const trip = findTripBySlug(categories, slug);
 
   if (!trip) {
-    return <TripNotFound />;
+    notFound();
   }
 
   return (

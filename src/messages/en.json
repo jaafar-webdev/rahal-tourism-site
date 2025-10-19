@@ -112,5 +112,9 @@
     "about": "About",
     "rights_reserved": "All rights reserved.",
     "designed_with_love": "Designed with ❤️ for our community"
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "message": "Redirecting to homepage in 5 seconds..."
   }
 }
