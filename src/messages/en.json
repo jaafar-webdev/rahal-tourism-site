@@ -113,6 +113,37 @@
     "rights_reserved": "All rights reserved.",
     "designed_with_love": "Designed with ❤️ for our community"
   },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: October 20, 2025",
+    "intro": "We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website or services.",
+    "informationTitle": "1. Information We Collect",
+    "informationContent": "We may collect personal information such as your name, email address, and usage data.",
+    "howWeUseTitle": "2. How We Use Your Information",
+    "howWeUseContent": "We use your data to provide and improve our services, communicate with you, and comply with legal obligations.",
+    "dataSecurityTitle": "3. Data Security",
+    "dataSecurityContent": "We implement appropriate technical and organizational measures to protect your data.",
+    "yourRightsTitle": "4. Your Rights",
+    "yourRightsContent": "You have the right to access, correct, or delete your personal information at any time.",
+    "changesToPolicyTitle": "5. Changes to This Policy",
+    "changesToPolicyContent": "We may update this policy periodically. The updated version will be posted here with a new \"Last updated\" date.",
+    "contactInfo": "If you have any questions about this Privacy Policy, please contact us."
+  },
+  "termsOfService": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: October 20, 2025",
+    "acceptanceTitle": "1. Acceptance of Terms",
+    "acceptanceContent": "By using our services, you confirm that you are at least 13 years old and agree to these terms.",
+    "useOfServicesTitle": "2. Use of Services",
+    "useOfServicesContent": "You agree to use our services only for lawful purposes and in accordance with these terms.",
+    "intellectualPropertyTitle": "3. Intellectual Property",
+    "intellectualPropertyContent": "All content on this platform is owned by us or our licensors and is protected by copyright laws.",
+    "limitationOfLiabilityTitle": "4. Limitation of Liability",
+    "limitationOfLiabilityContent": "We are not liable for any indirect, incidental, or consequential damages arising from your use of the service.",
+    "modificationsTitle": "5. Modifications",
+    "modificationsContent": "We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance.",
+    "agreementNote": "By using our services, you agree to these terms and conditions."
+  },
   "NotFound": {
     "title": "Page Not Found",
     "message": "Redirecting to homepage in 5 seconds..."
