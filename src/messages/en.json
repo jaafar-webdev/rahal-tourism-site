@@ -147,5 +147,12 @@
   "NotFound": {
     "title": "Page Not Found",
     "message": "Redirecting to homepage in 5 seconds..."
+  },
+  "Stats": {
+    "title": "Our Numbers Speak for Themselves",
+    "subtitle": "We are trusted by thousands of travelers worldwide. Explore our achievements.",
+    "trips": "Successful Trips",
+    "travelers": "Happy Travelers",
+    "reviews": "Average Ratings"
   }
 }
