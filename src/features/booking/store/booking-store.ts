@@ -21,6 +21,7 @@ interface BookingData {
   gatheringPlace: string;
   trip: TripData;
   payment: PaymentData;
+  totalPrice: number;
 }
 
 interface BookingActions {
@@ -51,19 +52,28 @@ const initialBookingState: BookingData = {
     bankAccount: "",
     transactionNumber: "",
   },
+  totalPrice: 0,
 };
 
 export const useBookingStore = create<BookingState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       ...initialBookingState,
 
       setName: (name: string) => set({ name }),
       setEmail: (email: string) => set({ email }),
       setPhoneNumber: (phoneNumber: string) => set({ phoneNumber }),
-      setGuests: (guests: number) => set({ guests }),
+      setGuests: (guests: number) => {
+        set({ guests });
+        const { trip } = get();
+        set({ totalPrice: trip.price * guests });
+      },
       setGatheringPlace: (gatheringPlace: string) => set({ gatheringPlace }),
-      setTrip: (trip: TripData) => set({ trip }),
+      setTrip: (trip: TripData) => {
+        set({ trip });
+        const { guests } = get();
+        set({ totalPrice: trip.price * guests });
+      },
       setPaymentMethod: (method: "bank_transfer" | "ewallet") =>
         set((state) => ({
           ...state,

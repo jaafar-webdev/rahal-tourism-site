@@ -9,7 +9,7 @@ interface BookingSummaryProps {
 }
 
 const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
-  const { name, email, phoneNumber, guests, gatheringPlace, trip } =
+  const { name, email, phoneNumber, guests, gatheringPlace, trip, totalPrice } =
     useBookingStore();
 
   const bookingData: BookingSummaryData = {
@@ -27,7 +27,8 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
     bookingData.phoneNumber &&
     bookingData.guests > 0 &&
     bookingData.trip.title &&
-    bookingData.trip.price > 0;
+    bookingData.trip.price > 0 &&
+    totalPrice > 0;
 
   return (
     <div className="space-y-6">
@@ -102,7 +103,7 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({ onNext, t }) => {
                 {t("Total_Price")}
               </label>
               <p className="text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-md">
-                {bookingData.trip.price} {t("currency")}
+                {totalPrice} {t("currency")}
               </p>
             </div>
           </div>

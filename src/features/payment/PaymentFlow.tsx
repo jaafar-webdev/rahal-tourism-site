@@ -1,15 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BookingSummary from "./BookingSummary";
 import PaymentMethodSelection from "./PaymentMethodSelection";
 import PaymentDetails from "./PaymentDetails";
 import ConfirmationSuccess from "./ConfirmationSuccess";
 import { PaymentStep } from "./types";
 import { useTranslations } from "next-intl";
+import { useBookingStore } from "@/features/booking/store/booking-store";
 
 const PaymentFlow: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<PaymentStep>("summary");
-  const t = useTranslations(); // استخدام useTranslations داخل Client Component
+  const t = useTranslations();
+  const { reset } = useBookingStore();
+
+  useEffect(() => {
+    if (currentStep === "confirmation") {
+      reset();
+    }
+  }, [currentStep, reset]);
 
   const handleNext = () => {
     switch (currentStep) {
