@@ -97,9 +97,11 @@
   "Back": "Back",
   "Order_Received_Successfully": "Your order has been received successfully!",
   "Contact_Confirmation": "We will contact you as soon as possible to confirm the booking. Thank you for using our services.",
-  "Back_to_Homepage": "Back to Homepage",
   "Bank_Account_Required": "Bank account is required",
   "Transaction_Number_Required_Error": "Transaction number is required",
+  "PolicyPage": {
+    "Back_to_Homepage": "Back to Homepage"
+  },
   "E_Wallet_Number": "E-Wallet Number",
   "Enter_Bank_Account_Number": "Enter Bank Account Number",
   "Enter_E_Wallet_Number": "Enter E-Wallet Number",

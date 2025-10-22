@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { themeConfig } from "./themeConfig";
 import PolicyHeader from "./PolicyHeader";
 import PolicySection from "./PolicySection";
 import PolicyNote from "./PolicyNote";
+import { Button } from "@/components/ui/Button";
 
 interface PolicyPageLayoutProps {
   type: "privacy" | "terms";
@@ -62,6 +64,14 @@ export default function PolicyPageLayout({
               themeConfig={config}
             />
           </div>
+        </div>
+
+        <div className="flex justify-center mt-8">
+          <Link href="/ar" passHref>
+            <Button variant="primary" size="lg">
+              {useTranslations("PolicyPage")("Back_to_Homepage")}
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

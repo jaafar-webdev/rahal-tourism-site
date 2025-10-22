@@ -97,9 +97,11 @@
   "Back": "رجوع",
   "Order_Received_Successfully": "تم استلام طلبك بنجاح!",
   "Contact_Confirmation": "سيتم التواصل معكم في أقرب وقت لتأكيد الحجز. شكرًا لاستخدامكم خدماتنا.",
-  "Back_to_Homepage": "العودة إلى الصفحة الرئيسية",
   "Bank_Account_Required": "حساب البنك مطلوب",
   "Transaction_Number_Required_Error": "رقم العملية مطلوب",
+  "PolicyPage": {
+    "Back_to_Homepage": "العودة إلى الصفحة الرئيسية"
+  },
   "E_Wallet_Number": "رقم المحفظة",
   "Enter_Bank_Account_Number": "أدخل رقم الحساب البنكي",
   "Enter_E_Wallet_Number": "أدخل رقم المحفظة",
