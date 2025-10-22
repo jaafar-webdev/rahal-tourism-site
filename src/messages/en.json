@@ -154,5 +154,32 @@
     "trips": "Successful Trips",
     "travelers": "Happy Travelers",
     "reviews": "Average Ratings"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have a question or need help? Fill out the form below and we'll get back to you as soon as possible.",
+    "issueType": "Issue Type",
+    "issueTypes": {
+      "payment-issue": "Payment Issue",
+      "booking-issue": "Booking Issue",
+      "delivery-issue": "Delivery Issue",
+      "lost-and-found": "Lost & Found",
+      "other": "Other"
+    },
+    "email": "Email",
+    "phone": "Phone (Optional)",
+    "message": "Message",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "success": {
+      "title": "Thank you!",
+      "message": "Your message has been received successfully and we'll get back to you as soon as possible.",
+      "backToHome": "Back to Homepage"
+    },
+    "errors": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "invalidPhone": "Invalid phone number"
+    }
   }
 }
