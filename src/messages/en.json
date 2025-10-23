@@ -149,7 +149,8 @@
   },
   "NotFound": {
     "title": "Page Not Found",
-    "message": "Redirecting to homepage in 5 seconds..."
+    "message": "Redirecting to homepage in 5 seconds...",
+    "Back_to_Homepage": "Back to Homepage"
   },
   "Stats": {
     "title": "Our Numbers Speak for Themselves",
