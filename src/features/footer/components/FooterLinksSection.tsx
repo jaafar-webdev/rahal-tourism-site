@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import { FooterLink } from "./FooterLink";
 
 type FooterLinksSectionProps = {
@@ -13,12 +14,13 @@ export const FooterLinksSection = ({
   contactText,
   aboutText,
 }: FooterLinksSectionProps) => {
+  const locale = useLocale();
   return (
     <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-400">
-      <FooterLink href="/privacy-policy">{privacyText}</FooterLink>
-      <FooterLink href="/terms-of-service">{termsText}</FooterLink>
-      <FooterLink href="/contact">{contactText}</FooterLink>
-      <FooterLink href="/about">{aboutText}</FooterLink>
+      <FooterLink href={`/${locale}/privacy-policy`}>{privacyText}</FooterLink>
+      <FooterLink href={`/${locale}/terms-of-service`}>{termsText}</FooterLink>
+      <FooterLink href={`/${locale}/contact`}>{contactText}</FooterLink>
+      <FooterLink href={`/${locale}/about`}>{aboutText}</FooterLink>
     </div>
   );
 };
