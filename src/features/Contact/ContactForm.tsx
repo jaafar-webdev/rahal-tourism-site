@@ -41,7 +41,7 @@ export function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     const result = await submitContactForm(data);
     if (!result.success) {
-      alert("An unexpected error occurred. Please try again.");
+      console.error("An unexpected error occurred. Please try again.");
     } else {
       setFormStatus({ success: true, message: t("success.message") });
     }
