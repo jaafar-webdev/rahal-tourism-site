@@ -67,7 +67,7 @@ export default function PolicyPageLayout({
         </div>
 
         <div className="flex justify-center mt-8">
-          <Link href="/ar" passHref>
+          <Link href="/" passHref>
             <Button variant="primary" size="lg">
               {useTranslations("PolicyPage")("Back_to_Homepage")}
             </Button>
