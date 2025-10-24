@@ -1,6 +1,7 @@
-import React from "react";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 import { Button } from "@/components/ui/Button";
+import { getPaymentMethods } from "../data/payment-methods";
+import { PaymentMethodId } from "../types";
 
 interface PaymentMethodSelectionProps {
   onNext: () => void;
@@ -8,29 +9,15 @@ interface PaymentMethodSelectionProps {
   t: (key: string) => string;
 }
 
-const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
+const PaymentMethodSelection = ({
   onNext,
   onBack,
   t,
-}) => {
+}: PaymentMethodSelectionProps) => {
   const { payment, setPaymentMethod } = useBookingStore();
+  const paymentMethods = getPaymentMethods(t);
 
-  const paymentMethods = [
-    {
-      id: "bank_transfer",
-      name: t("Bank_Transfer"),
-      description: t("Transfer_Details"),
-      icon: "🏦",
-    },
-    {
-      id: "ewallet",
-      name: t("E_Wallet"),
-      description: t("E_Wallet_Details"),
-      icon: "💳",
-    },
-  ];
-
-  const handleMethodSelect = (methodId: "bank_transfer" | "ewallet") => {
+  const handleMethodSelect = (methodId: PaymentMethodId) => {
     setPaymentMethod(methodId);
   };
 
@@ -47,9 +34,7 @@ const PaymentMethodSelection: React.FC<PaymentMethodSelectionProps> = ({
           {paymentMethods.map((method) => (
             <div
               key={method.id}
-              onClick={() =>
-                handleMethodSelect(method.id as "bank_transfer" | "ewallet")
-              }
+              onClick={() => handleMethodSelect(method.id)}
               className={`border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 ${
                 payment.method === method.id
                   ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/50"

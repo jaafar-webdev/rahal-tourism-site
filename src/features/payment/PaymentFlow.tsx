@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import BookingSummary from "./BookingSummary";
-import PaymentMethodSelection from "./PaymentMethodSelection";
-import PaymentDetails from "./PaymentDetails";
-import ConfirmationSuccess from "./ConfirmationSuccess";
+import BookingSummary from "./components/BookingSummary";
+import PaymentMethodSelection from "./components/PaymentMethodSelection";
+import PaymentDetails from "./components/PaymentDetails";
+import ConfirmationSuccess from "./components/ConfirmationSuccess";
 import { PaymentStep } from "./types";
 import { useTranslations } from "next-intl";
 import { useBookingStore } from "@/features/booking/store/booking-store";

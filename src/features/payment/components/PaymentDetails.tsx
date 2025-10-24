@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useBookingStore } from "@/features/booking/store/booking-store";
+import { usePaymentDetails } from "../hooks/usePaymentDetails";
+import { getBankAccountNumber } from "../services/getBankAccountNumber";
 import InputField from "@/components/form/InputField";
 import { Button } from "@/components/ui/Button";
+import { useBookingStore } from "@/features/booking/store/booking-store";
 
 interface PaymentDetailsProps {
   onNext: () => void;
@@ -9,68 +10,27 @@ interface PaymentDetailsProps {
   t: (key: string) => string;
 }
 
-const PaymentDetails: React.FC<PaymentDetailsProps> = ({
-  onNext,
-  onBack,
-  t,
-}) => {
-  const { payment, setBankAccount, setTransactionNumber } = useBookingStore();
-  const [errors, setErrors] = useState<{
-    bankAccount?: string;
-    transactionNumber?: string;
-  }>({});
-
-  const validateForm = () => {
-    const newErrors: { bankAccount?: string; transactionNumber?: string } = {};
-
-    if (!payment.bankAccount?.trim()) {
-      newErrors.bankAccount = t("Bank_Account_Required");
-    }
-
-    if (!payment.transactionNumber?.trim()) {
-      newErrors.transactionNumber = t("Transaction_Number_Required_Error");
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleBankAccountChange = (value: string) => {
-    setBankAccount(value);
-    if (errors.bankAccount && value.trim()) {
-      setErrors((prev) => ({ ...prev, bankAccount: undefined }));
-    }
-  };
-
-  const handleTransactionNumberChange = (value: string) => {
-    setTransactionNumber(value);
-    if (errors.transactionNumber && value.trim()) {
-      setErrors((prev) => ({ ...prev, transactionNumber: undefined }));
-    }
-  };
-
-  const handleSubmit = () => {
-    if (validateForm()) {
-      onNext();
-    }
-  };
-
-  const getBankAccountNumber = () => {
-    // This would typically come from your backend or configuration
-    return "010012345678901";
-  };
+const PaymentDetails = ({ onNext, onBack, t }: PaymentDetailsProps) => {
+  const { payment: paymentMethod } = useBookingStore();
+  const {
+    payment,
+    errors,
+    handleBankAccountChange,
+    handleTransactionNumberChange,
+    handleSubmit,
+  } = usePaymentDetails(onNext, t);
 
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          {payment.method === "bank_transfer"
+          {paymentMethod.method === "bank_transfer"
             ? t("Transfer_Details")
             : t("E_Wallet_Details")}
         </h2>
 
         <div className="space-y-6">
-          {payment.method === "bank_transfer" && (
+          {paymentMethod.method === "bank_transfer" && (
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
               <div className="flex items-start space-x-3">
                 <div className="text-blue-600 dark:text-blue-400 text-xl">
@@ -99,7 +59,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
           <div className="space-y-4">
             <InputField
               label={
-                payment.method === "bank_transfer"
+                paymentMethod.method === "bank_transfer"
                   ? t("Account_Number")
                   : t("E_Wallet_Number")
               }
@@ -108,7 +68,7 @@ const PaymentDetails: React.FC<PaymentDetailsProps> = ({
               onChange={(e) => handleBankAccountChange(e.target.value)}
               error={errors.bankAccount}
               placeholder={
-                payment.method === "bank_transfer"
+                paymentMethod.method === "bank_transfer"
                   ? t("Enter_Bank_Account_Number")
                   : t("Enter_E_Wallet_Number")
               }

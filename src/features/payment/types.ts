@@ -1,10 +1,18 @@
+export type PaymentMethodId = "bank_transfer" | "ewallet";
+
+export interface PaymentMethod {
+  id: PaymentMethodId;
+  name: string;
+  description: string;
+  icon: string;
+}
 export interface TripData {
   title: string;
   price: number;
 }
 
 export interface PaymentData {
-  method: "bank_transfer" | "ewallet" | null;
+  method: PaymentMethodId | null;
   bankAccount?: string;
   transactionNumber?: string;
 }
