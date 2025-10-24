@@ -6,7 +6,7 @@ import {
   contactSchema,
   ContactFormData,
 } from "@/features/Contact/schemas/contact-schema";
-import { submitContactForm } from "@/app/[locale]/contact/contact-action";
+import { submitContactForm } from "@/app/(public)/[locale]/contact/contact-action";
 import InputField from "@/components/form/InputField";
 import SelectField from "@/components/form/SelectField";
 import TextareaField from "@/components/form/TextareaField";
