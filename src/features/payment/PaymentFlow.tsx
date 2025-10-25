@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import BookingSummary from "./components/BookingSummary";
 import PaymentMethodSelection from "./components/PaymentMethodSelection";
 import PaymentDetails from "./components/PaymentDetails";
@@ -8,7 +8,7 @@ import { PaymentStep } from "./types";
 import { useTranslations } from "next-intl";
 import { useBookingStore } from "@/features/booking/store/booking-store";
 
-const PaymentFlow: React.FC = () => {
+const PaymentFlow = () => {
   const [currentStep, setCurrentStep] = useState<PaymentStep>("summary");
   const t = useTranslations();
   const { reset } = useBookingStore();

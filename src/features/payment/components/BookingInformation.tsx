@@ -7,10 +7,7 @@ interface BookingInformationProps {
   t: (key: string) => string;
 }
 
-const BookingInformation: React.FC<BookingInformationProps> = ({
-  bookingData,
-  t,
-}) => (
+const BookingInformation = ({ bookingData, t }: BookingInformationProps) => (
   <div className="rounded-lg shadow-md p-6 bg-white dark:bg-gray-800">
     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
       {t("Booking_Information")}

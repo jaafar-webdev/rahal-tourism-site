@@ -8,11 +8,7 @@ interface TripInformationProps {
   t: (key: string) => string;
 }
 
-const TripInformation: React.FC<TripInformationProps> = ({
-  trip,
-  totalPrice,
-  t,
-}) => (
+const TripInformation = ({ trip, totalPrice, t }: TripInformationProps) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
       {t("Trip_Details")}
