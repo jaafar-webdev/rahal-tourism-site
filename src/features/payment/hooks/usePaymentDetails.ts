@@ -40,9 +40,7 @@ export const usePaymentDetails = (
   };
 
   const handleSubmit = () => {
-    if (validateForm()) {
-      onNext();
-    }
+    return validateForm();
   };
 
   return {

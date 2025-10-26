@@ -185,5 +185,6 @@
       "invalidEmail": "Invalid email address",
       "invalidPhone": "Invalid phone number"
     }
-  }
+  },
+  "Submitting": "Submitting..."
 }

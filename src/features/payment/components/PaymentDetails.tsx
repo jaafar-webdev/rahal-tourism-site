@@ -3,6 +3,7 @@ import { getBankAccountNumber } from "../services/getBankAccountNumber";
 import InputField from "@/components/form/InputField";
 import { Button } from "@/components/ui/Button";
 import { useBookingStore } from "@/features/booking/store/booking-store";
+import { useSubmitOrder } from "../hooks/useSubmitOrder";
 
 interface PaymentDetailsProps {
   onNext: () => void;
@@ -19,6 +20,16 @@ const PaymentDetails = ({ onNext, onBack, t }: PaymentDetailsProps) => {
     handleTransactionNumberChange,
     handleSubmit,
   } = usePaymentDetails(onNext, t);
+  const { handleSubmitOrder, isLoading } = useSubmitOrder();
+
+  const handleConfirm = async () => {
+    if (handleSubmit()) {
+      const success = await handleSubmitOrder();
+      if (success) {
+        onNext();
+      }
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -108,8 +119,13 @@ const PaymentDetails = ({ onNext, onBack, t }: PaymentDetailsProps) => {
         <Button onClick={onBack} variant="outline" size="lg">
           {t("Back")}
         </Button>
-        <Button onClick={handleSubmit} variant="primary" size="lg">
-          {t("Next")}
+        <Button
+          onClick={handleConfirm}
+          variant="primary"
+          size="lg"
+          disabled={isLoading}
+        >
+          {isLoading ? t("Submitting") : t("Next")}
         </Button>
       </div>
     </div>

@@ -13,7 +13,7 @@ interface PaymentData {
   transactionNumber?: string;
 }
 
-interface BookingData {
+export interface BookingData {
   name: string;
   email: string;
   phoneNumber: string;
