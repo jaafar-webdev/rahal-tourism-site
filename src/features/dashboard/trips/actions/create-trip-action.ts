@@ -18,10 +18,10 @@ export async function createTripAction(data: CreateTripData) {
   }
 
   try {
-    const tripsCollectionRef = collection(db, "data", "content", "trips");
+    const tripsCollectionRef = collection(db, "trips");
     const newTripRef = await addDoc(tripsCollectionRef, validationResult.data);
 
-    const newTripDocRef = doc(db, "data", "content", "trips", newTripRef.id);
+    const newTripDocRef = doc(db, "trips", newTripRef.id);
     await setDoc(newTripDocRef, { id: newTripRef.id }, { merge: true });
 
     revalidatePath("/");
