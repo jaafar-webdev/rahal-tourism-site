@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   contactSchema,
   ContactFormData,
-} from "@/features/Contact/schemas/contact-schema";
+} from "@/features/public/Contact/schemas/contact-schema";
 import { submitContactForm } from "@/app/(public)/[locale]/contact/contact-action";
 import InputField from "@/components/form/InputField";
 import SelectField from "@/components/form/SelectField";

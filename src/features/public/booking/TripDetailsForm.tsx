@@ -1,6 +1,6 @@
 import React from "react";
-import InputField from "../../components/form/InputField";
-import SelectField from "../../components/form/SelectField";
+import InputField from "@/components/form/InputField";
+import SelectField from "@/components/form/SelectField";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { BookingFormData } from "./schemas/booking-schema";
 

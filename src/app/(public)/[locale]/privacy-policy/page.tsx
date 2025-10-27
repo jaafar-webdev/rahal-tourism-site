@@ -1,4 +1,4 @@
-import PolicyPageLayout from "@/features/PolicyPage/PolicyPageLayout";
+import PolicyPageLayout from "@/features/public/PolicyPage/PolicyPageLayout";
 
 export default function PrivacyPolicyPage() {
   const sections = [

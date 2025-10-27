@@ -2,7 +2,7 @@ import { usePaymentDetails } from "../hooks/usePaymentDetails";
 import { getBankAccountNumber } from "../services/getBankAccountNumber";
 import InputField from "@/components/form/InputField";
 import { Button } from "@/components/ui/Button";
-import { useBookingStore } from "@/features/booking/store/booking-store";
+import { useBookingStore } from "@/features/public/booking/store/booking-store";
 import { useSubmitOrder } from "../hooks/useSubmitOrder";
 
 interface PaymentDetailsProps {

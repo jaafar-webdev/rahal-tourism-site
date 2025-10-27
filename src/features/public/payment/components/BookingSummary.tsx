@@ -1,4 +1,4 @@
-import { useBookingStore } from "@/features/booking/store/booking-store";
+import { useBookingStore } from "@/features/public/booking/store/booking-store";
 import { Button } from "@/components/ui/Button";
 import BookingInformation from "./BookingInformation";
 import TripInformation from "./TripInformation";

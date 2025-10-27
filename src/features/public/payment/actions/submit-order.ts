@@ -1,6 +1,6 @@
 import { db } from "@/lib/firebase/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { BookingData } from "@/features/booking/store/booking-store";
+import { BookingData } from "@/features/public/booking/store/booking-store";
 
 export const submitOrder = async (bookingData: BookingData) => {
   try {

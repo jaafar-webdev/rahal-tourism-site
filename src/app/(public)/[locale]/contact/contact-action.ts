@@ -1,6 +1,6 @@
 "use server";
 
-import { contactSchema } from "@/features/Contact/schemas/contact-schema";
+import { contactSchema } from "@/features/public/Contact/schemas/contact-schema";
 
 export async function submitContactForm(data: unknown) {
   const parsedData = contactSchema.safeParse(data);

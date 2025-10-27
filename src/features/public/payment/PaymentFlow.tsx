@@ -6,7 +6,7 @@ import PaymentDetails from "./components/PaymentDetails";
 import ConfirmationSuccess from "./components/ConfirmationSuccess";
 import { PaymentStep } from "./types";
 import { useTranslations } from "next-intl";
-import { useBookingStore } from "@/features/booking/store/booking-store";
+import { useBookingStore } from "@/features/public/booking/store/booking-store";
 
 const PaymentFlow = () => {
   const [currentStep, setCurrentStep] = useState<PaymentStep>("summary");

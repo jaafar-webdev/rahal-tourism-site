@@ -1,5 +1,5 @@
 import Header from "../../../components/Header";
-import StatsSection from "@/features/about/components/StatsSection";
+import StatsSection from "@/features/public/about/components/StatsSection";
 import TripSection from "@/components/TripSection";
 import { getCategories } from "@/lib/data/get-categories";
 

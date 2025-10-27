@@ -1,4 +1,4 @@
-import PaymentFlow from "@/features/payment/PaymentFlow";
+import PaymentFlow from "@/features/public/payment/PaymentFlow";
 import { getTranslations } from "next-intl/server";
 
 export default async function Page() {

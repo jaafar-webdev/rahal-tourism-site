@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { useBookingStore } from "@/features/booking/store/booking-store";
+import { useBookingStore } from "@/features/public/booking/store/booking-store";
 import { submitOrder } from "../actions/submit-order";
 
 export const useSubmitOrder = () => {

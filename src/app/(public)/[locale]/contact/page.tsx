@@ -1,4 +1,4 @@
-import { ContactForm } from "@/features/Contact/ContactForm";
+import { ContactForm } from "@/features/public/Contact/ContactForm";
 import { useTranslations } from "next-intl";
 
 export default function ContactPage() {

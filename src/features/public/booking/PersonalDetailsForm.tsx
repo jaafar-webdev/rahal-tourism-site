@@ -1,5 +1,5 @@
 import React from "react";
-import InputField from "../../components/form/InputField";
+import InputField from "@/components/form/InputField";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { BookingFormData } from "./schemas/booking-schema";
 import { useTranslations } from "next-intl";
