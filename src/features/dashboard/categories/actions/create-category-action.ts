@@ -3,12 +3,12 @@ import { revalidatePath } from "next/cache";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
 import {
-  CreateTripSchema,
-  CreateTripData,
-} from "../schemas/create-trip-schema";
+  createCategorySchema,
+  CreateCategorySchema,
+} from "../schemas/create-category-schema";
 
-export async function createTripAction(data: CreateTripData) {
-  const validationResult = CreateTripSchema.safeParse(data);
+export async function createCategoryAction(data: CreateCategorySchema) {
+  const validationResult = createCategorySchema.safeParse(data);
 
   if (!validationResult.success) {
     return {
@@ -18,19 +18,20 @@ export async function createTripAction(data: CreateTripData) {
   }
 
   try {
-    const newTripRef = doc(collection(db, "trips"));
-    const tripData = {
+    const newCategoryRef = doc(collection(db, "categories"));
+    const categoryData = {
       ...validationResult.data,
-      id: newTripRef.id,
+      id: newCategoryRef.id,
+      trips: [],
     };
 
-    await setDoc(newTripRef, tripData);
+    await setDoc(newCategoryRef, categoryData);
 
     revalidatePath("/");
 
     return {
       success: true,
-      data: tripData,
+      data: categoryData,
     };
   } catch (error) {
     return {
