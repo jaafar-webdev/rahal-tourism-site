@@ -1,11 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import {
-  collection,
-  doc,
-  runTransaction,
-  arrayUnion,
-} from "firebase/firestore";
+import { doc, runTransaction, arrayUnion } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
 import {
   CreateTripSchema,
@@ -23,39 +18,40 @@ export async function createTripAction(data: CreateTripData) {
   }
 
   try {
-    const { categoryId, ...tripDataWithoutCategory } = validationResult.data;
+    const { categoryId, ...tripData } = validationResult.data;
 
-    const newTripRef = doc(collection(db, "trips"));
+    const newTrip = {
+      ...tripData,
+    };
+
+    const categoryRef = doc(db, "categories", categoryId);
 
     await runTransaction(db, async (transaction) => {
-      const categoryRef = doc(db, "categories", categoryId);
       const categoryDoc = await transaction.get(categoryRef);
 
       if (!categoryDoc.exists()) {
         throw new Error("Category not found!");
       }
 
-      const newTrip = {
-        ...tripDataWithoutCategory,
-        id: newTripRef.id,
-        categoryId: categoryId,
-      };
-
-      transaction.set(newTripRef, newTrip);
-      transaction.update(categoryRef, { trips: arrayUnion(newTripRef.id) });
+      transaction.update(categoryRef, {
+        trips: arrayUnion(newTrip),
+      });
     });
 
     revalidatePath("/");
 
     return {
       success: true,
-      data: { ...validationResult.data, id: newTripRef.id },
+      data: newTrip,
     };
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "An unexpected error occurred.";
+
     return {
       success: false,
       error: {
-        _errors: ["An unexpected error occurred.", error],
+        _errors: [errorMessage],
       },
     };
   }

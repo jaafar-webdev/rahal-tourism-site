@@ -14,7 +14,7 @@ export const CreateTripSchema = z.object({
   departureDate: z.string().min(1, "Departure date is required"),
   descriptionAr: z.string().min(1, "Arabic description is required"),
   descriptionEn: z.string().min(1, "English description is required"),
-  imageUrl: z.string().url("Invalid image URL"),
+  imageUrl: z.string().min(1, "Image URL is required"),
   categoryId: z.string().min(1, "Category is required"),
 });
 
