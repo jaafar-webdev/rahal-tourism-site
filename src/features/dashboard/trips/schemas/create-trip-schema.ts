@@ -15,6 +15,7 @@ export const CreateTripSchema = z.object({
   descriptionAr: z.string().min(1, "Arabic description is required"),
   descriptionEn: z.string().min(1, "English description is required"),
   imageUrl: z.string().url("Invalid image URL"),
+  categoryId: z.string().min(1, "Category is required"),
 });
 
 export type CreateTripData = z.infer<typeof CreateTripSchema>;

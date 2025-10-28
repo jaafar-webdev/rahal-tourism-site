@@ -1,5 +1,6 @@
 interface Trip {
    id: string;
+   categoryId: string;
    imageUrl: string;
    nameAr: string;
    nameEn: string;

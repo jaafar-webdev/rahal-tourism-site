@@ -13,7 +13,13 @@ import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/Button";
 import { useTransition } from "react";
 
-export function CreateTripForm() {
+import { Category } from '@/types/category';
+
+interface CreateTripFormProps {
+  categories: Category[];
+}
+
+export function CreateTripForm({ categories }: CreateTripFormProps) {
   const [isPending, startTransition] = useTransition();
   const {
     register,
@@ -45,6 +51,15 @@ export function CreateTripForm() {
       onSubmit={onSubmit}
       className="space-y-6 p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md"
     >
+      <SelectField
+        label="Category"
+        {...register('categoryId')}
+        options={categories.map((category) => ({
+          value: category.id,
+          label: category.nameEn,
+        }))}
+        error={errors.categoryId?.message}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <InputField
           label="Name (Arabic)"
