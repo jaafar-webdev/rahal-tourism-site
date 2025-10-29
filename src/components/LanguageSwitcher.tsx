@@ -4,7 +4,7 @@ import { usePathname, Link } from "@/i18n/navigation";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
-  const pathname = usePathname(); // هذا الآن من next-intl/navigation
+  const pathname = usePathname();
 
   return (
     <div className="">

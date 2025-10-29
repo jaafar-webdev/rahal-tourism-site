@@ -1,9 +1,10 @@
-import { getCategories, meetingPoints } from "@/lib/data/get-categories";
+import { getCategories } from "@/lib/data/get-categories";
 import { BackToTripsLink } from "@/components/BackToTripsLink";
 import { findTripBySlug } from "@/lib/hooks/useTrip";
 import TripDetailsContent from "@/features/public/trip-details/TripDetailsContent";
 import { notFound } from "next/navigation";
 import BookingForm from "@/features/public/booking/BookingForm";
+import { meetingPoints } from "@/lib/data/constant";
 
 export default async function TripDetailsPage({
   params,
