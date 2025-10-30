@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+table {
+  @apply w-full border-collapse;
+}
+
+thead {
+  @apply bg-white border-b-2 border-gray-300;
+}
+
+thead th {
+  @apply py-4 px-4 text-left font-medium text-gray-500 uppercase tracking-wider;
+}
+
+tbody tr {
+  @apply border-b border-gray-100 transition-colors duration-150;
+}
+
+tbody tr:hover {
+  @apply bg-gray-50;
+}
+
+tbody td {
+  @apply py-4 px-4 text-gray-600;
+}
