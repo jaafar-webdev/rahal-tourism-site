@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
 table {
   @apply w-full border-collapse;
 }
