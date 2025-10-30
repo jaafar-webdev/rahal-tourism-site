@@ -1,4 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import DashboardNavLinks from "./DashboardNavLinks";
+import MobileMenuButton from "./MobileMenuButton";
+import MobileMenu from "./MobileMenu";
 
 const navItems = [
   { href: "/trips/create", label: "Create Trip" },
@@ -8,26 +14,46 @@ const navItems = [
 ];
 
 export default function DashboardHeader() {
-  return (
-    <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
-      <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link
-          href="/trips/create"
-          className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-90 transition-opacity"
-        >
-          Rahal Dashboard
-        </Link>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-        <div className="flex items-center gap-2">
-          {navItems.map((item) => (
+  return (
+    <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm sticky top-0 z-10">
+      <nav className="container mx-auto px-4 py-3">
+        <div className="flex justify-between items-center">
+          <Link
+            href="/trips/create"
+            className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-90 transition-opacity hidden md:block"
+          >
+            Rahal Dashboard
+          </Link>
+
+          <MobileMenuButton
+            isMenuOpen={isMenuOpen}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+
+          <div className="md:hidden text-xl font-semibold text-gray-800 dark:text-gray-100">
             <Link
-              key={item.href}
-              href={item.href}
-              className="px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 font-medium text-sm border border-transparent hover:border-blue-100 dark:hover:border-gray-600"
+              href="/trips/create"
+              className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             >
-              {item.label}
+              Rahal
             </Link>
-          ))}
+          </div>
+
+          <div className="hidden md:block"></div>
+          <div className="hidden md:block"></div>
+        </div>
+
+        {isMenuOpen && (
+          <MobileMenu
+            navItems={navItems}
+            onLinkClick={() => setIsMenuOpen(false)}
+          />
+        )}
+
+        <div className="hidden md:flex justify-center mt-2 md:mt-0">
+          <DashboardNavLinks />
         </div>
       </nav>
     </header>
