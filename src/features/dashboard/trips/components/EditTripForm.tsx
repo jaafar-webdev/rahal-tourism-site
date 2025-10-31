@@ -20,7 +20,7 @@ import { getCategories } from "@/lib/data/get-categories";
 
 interface EditTripFormProps {
   trip: Trip;
-  categoryId: string; // Add categoryId prop
+  categoryId: string;
 }
 
 export function EditTripForm({ trip, categoryId }: EditTripFormProps) {
@@ -57,7 +57,7 @@ export function EditTripForm({ trip, categoryId }: EditTripFormProps) {
       imageUrl: trip.imageUrl,
       descriptionAr: trip.descriptionAr,
       descriptionEn: trip.descriptionEn,
-      categoryId: categoryId, // Use the categoryId prop
+      categoryId: categoryId,
     },
   });
 
