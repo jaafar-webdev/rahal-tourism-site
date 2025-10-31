@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Category } from "@/types/category";
 
 interface CategoriesTableProps {
@@ -19,6 +20,13 @@ export default function CategoriesTable({ categories }: CategoriesTableProps) {
             <tr key={category.id}>
               <td>{category.id}</td>
               <td>{category.nameEn}</td>
+              <td>
+                <Link href={`/categories/edit/${category.id}`}>
+                  <button className="text-blue-600 hover:text-blue-800">
+                    Edit
+                  </button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
