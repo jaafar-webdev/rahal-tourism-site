@@ -22,6 +22,7 @@ export async function createTripAction(data: CreateTripData) {
 
     const newTrip = {
       ...tripData,
+      categoryId: categoryId,
     };
 
     const categoryRef = doc(db, "categories", categoryId);
