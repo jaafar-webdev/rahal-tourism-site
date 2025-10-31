@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Trip from "@/types/trip";
 
 interface TripsTableProps {
@@ -13,6 +14,7 @@ export default function TripsTable({ trips }: TripsTableProps) {
             <th>Trip Name</th>
             <th>Price</th>
             <th>Accommodation</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +25,13 @@ export default function TripsTable({ trips }: TripsTableProps) {
                 {trip.price.amount} {trip.price.currency}
               </td>
               <td>{trip.accommodationEn}</td>
+              <td>
+                <Link href={`/trips/edit/${trip.id}`}>
+                  <button className="text-blue-600 hover:text-blue-800">
+                    Edit
+                  </button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

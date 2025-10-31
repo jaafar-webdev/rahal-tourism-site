@@ -1,12 +1,15 @@
-'use client';
+"use client";
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { CreateCategorySchema, createCategorySchema } from '../schemas/create-category-schema';
-import { createCategoryAction } from '../actions/create-category-action';
-import InputField from '@/components/form/InputField';
-import { Button } from '@/components/ui/Button';
-import { useTransition } from 'react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  CreateCategorySchema,
+  createCategorySchema,
+} from "../schemas/create-category-schema";
+import { createCategoryAction } from "../actions/create-category-action";
+import InputField from "@/components/form/InputField";
+import { Button } from "@/components/ui/Button";
+import { useTransition } from "react";
 
 export function CreateCategoryForm() {
   const [isPending, startTransition] = useTransition();
@@ -23,10 +26,10 @@ export function CreateCategoryForm() {
     startTransition(async () => {
       const result = await createCategoryAction(data);
       if (result.success) {
-        alert('Category created successfully!');
+        alert("Category created successfully!");
         reset();
       } else {
-        alert('Error creating category.');
+        alert("Error creating category.");
         console.error(result.error);
       }
     });
@@ -40,18 +43,18 @@ export function CreateCategoryForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <InputField
           label="Name (Arabic)"
-          {...register('nameAr')}
+          {...register("nameAr")}
           error={errors.nameAr?.message}
         />
         <InputField
           label="Name (English)"
-          {...register('nameEn')}
+          {...register("nameEn")}
           error={errors.nameEn?.message}
         />
       </div>
 
       <Button type="submit" disabled={isPending} fullWidth>
-        {isPending ? 'Creating...' : 'Create Category'}
+        {isPending ? "Creating..." : "Create Category"}
       </Button>
     </form>
   );
