@@ -28,7 +28,6 @@ export async function updateTripAction(
     const newCategoryRef = doc(db, "categories", newCategoryId);
 
     await runTransaction(db, async (transaction) => {
-      // كل الـ reads أولاً
       const currentCategoryDoc = await transaction.get(currentCategoryRef);
       if (!currentCategoryDoc.exists()) {
         throw new Error("Current category not found!");
@@ -42,7 +41,6 @@ export async function updateTripAction(
         }
       }
 
-      // بعد ما خلصنا كل الـ reads، نبدأ الـ writes
       const currentCategoryData = currentCategoryDoc.data();
       const currentTrips = currentCategoryData.trips || [];
 
@@ -67,18 +65,15 @@ export async function updateTripAction(
       };
 
       if (isCategoryChanged) {
-        // حذف من الفئة القديمة
         const updatedCurrentTrips = [...currentTrips];
         updatedCurrentTrips.splice(tripIndex, 1);
         transaction.update(currentCategoryRef, { trips: updatedCurrentTrips });
 
-        // إضافة للفئة الجديدة
         const newCategoryData = newCategoryDoc!.data();
         const newTrips = newCategoryData.trips || [];
         newTrips.push(updatedTrip);
         transaction.update(newCategoryRef, { trips: newTrips });
       } else {
-        // تحديث في نفس الفئة
         const updatedCurrentTrips = [...currentTrips];
         updatedCurrentTrips[tripIndex] = updatedTrip;
         transaction.update(currentCategoryRef, { trips: updatedCurrentTrips });
