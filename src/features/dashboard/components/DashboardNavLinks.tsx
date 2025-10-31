@@ -6,6 +6,7 @@ const navItems = [
   { href: "/categories/create", label: "Create Category" },
   { href: "/trips/view", label: "View Trips" },
   { href: "/categories/view", label: "View Categories" },
+  { href: "/orders/view", label: "View Orders" },
 ];
 
 export default function DashboardNavLinks() {

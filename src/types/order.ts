@@ -1,5 +1,5 @@
 import { PaymentData, TripData } from "@/features/public/payment/types";
-import { FieldValue } from "firebase/firestore";
+import { FieldValue, Timestamp } from "firebase/firestore";
 
 export interface Order {
   id?: string;
@@ -12,5 +12,5 @@ export interface Order {
   payment: PaymentData;
   totalPrice: number;
   status: "Pending" | "Confirmed" | "Cancelled";
-  createdAt: FieldValue;
+  createdAt: FieldValue | Timestamp;
 }
