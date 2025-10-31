@@ -20,9 +20,10 @@ import { getCategories } from "@/lib/data/get-categories";
 
 interface EditTripFormProps {
   trip: Trip;
+  categoryId: string; // Add categoryId prop
 }
 
-export function EditTripForm({ trip }: EditTripFormProps) {
+export function EditTripForm({ trip, categoryId }: EditTripFormProps) {
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
@@ -56,7 +57,7 @@ export function EditTripForm({ trip }: EditTripFormProps) {
       imageUrl: trip.imageUrl,
       descriptionAr: trip.descriptionAr,
       descriptionEn: trip.descriptionEn,
-      categoryId: trip.categoryId,
+      categoryId: categoryId, // Use the categoryId prop
     },
   });
 

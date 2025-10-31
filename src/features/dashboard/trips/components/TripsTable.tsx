@@ -26,7 +26,9 @@ export default function TripsTable({ trips }: TripsTableProps) {
               </td>
               <td>{trip.accommodationEn}</td>
               <td>
-                <Link href={`/trips/edit/${trip.id}`}>
+                <Link
+                  href={`/trips/edit/${trip.id}?categoryId=${trip.categoryId}`}
+                >
                   <button className="text-blue-600 hover:text-blue-800">
                     Edit
                   </button>
