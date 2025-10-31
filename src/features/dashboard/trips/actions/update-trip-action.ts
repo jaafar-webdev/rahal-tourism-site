@@ -1,22 +1,95 @@
-"use server";
-
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, runTransaction } from "firebase/firestore";
 import { db } from "@/lib/firebase/firebase";
-import { CreateTripData } from "../schemas/create-trip-schema";
+import {
+  CreateTripData,
+  CreateTripSchema,
+} from "../schemas/create-trip-schema";
 
-export async function updateTripAction(id: string, data: CreateTripData) {
+export async function updateTripAction(
+  currentCategoryId: string,
+  tripId: string,
+  data: CreateTripData
+) {
+  const validationResult = CreateTripSchema.safeParse(data);
+
+  if (!validationResult.success) {
+    return {
+      success: false,
+      error: validationResult.error.flatten().fieldErrors,
+    };
+  }
+
   try {
-    const tripRef = doc(db, "trips", id);
-    await updateDoc(tripRef, {
-      ...data,
-      price: {
-        amount: Number(data.price.amount),
-        currency: data.price.currency,
-      },
+    const { categoryId: newCategoryId, ...tripData } = validationResult.data;
+
+    const isCategoryChanged = currentCategoryId !== newCategoryId;
+
+    const currentCategoryRef = doc(db, "categories", currentCategoryId);
+    const newCategoryRef = doc(db, "categories", newCategoryId);
+
+    await runTransaction(db, async (transaction) => {
+      // كل الـ reads أولاً
+      const currentCategoryDoc = await transaction.get(currentCategoryRef);
+      if (!currentCategoryDoc.exists()) {
+        throw new Error("Current category not found!");
+      }
+
+      let newCategoryDoc;
+      if (isCategoryChanged) {
+        newCategoryDoc = await transaction.get(newCategoryRef);
+        if (!newCategoryDoc.exists()) {
+          throw new Error("New category not found!");
+        }
+      }
+
+      // بعد ما خلصنا كل الـ reads، نبدأ الـ writes
+      const currentCategoryData = currentCategoryDoc.data();
+      const currentTrips = currentCategoryData.trips || [];
+
+      const tripIndex = currentTrips.findIndex(
+        (trip: any) => trip.id === tripId
+      );
+      if (tripIndex === -1) {
+        throw new Error("Trip not found in the current category!");
+      }
+
+      const currentTrip = currentTrips[tripIndex];
+
+      const updatedTrip = {
+        ...currentTrip,
+        ...tripData,
+        price: {
+          amount: Number(tripData.price.amount),
+          currency: tripData.price.currency,
+        },
+        id: tripId,
+        categoryId: newCategoryId,
+      };
+
+      if (isCategoryChanged) {
+        // حذف من الفئة القديمة
+        const updatedCurrentTrips = [...currentTrips];
+        updatedCurrentTrips.splice(tripIndex, 1);
+        transaction.update(currentCategoryRef, { trips: updatedCurrentTrips });
+
+        // إضافة للفئة الجديدة
+        const newCategoryData = newCategoryDoc!.data();
+        const newTrips = newCategoryData.trips || [];
+        newTrips.push(updatedTrip);
+        transaction.update(newCategoryRef, { trips: newTrips });
+      } else {
+        // تحديث في نفس الفئة
+        const updatedCurrentTrips = [...currentTrips];
+        updatedCurrentTrips[tripIndex] = updatedTrip;
+        transaction.update(currentCategoryRef, { trips: updatedCurrentTrips });
+      }
     });
+
     return { success: true };
   } catch (error) {
     console.error("Error updating trip:", error);
-    return { success: false, error: "Failed to update trip" };
+    const errorMessage =
+      error instanceof Error ? error.message : "An unexpected error occurred.";
+    return { success: false, error: errorMessage };
   }
 }

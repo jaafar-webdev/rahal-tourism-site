@@ -63,7 +63,7 @@ export function EditTripForm({ trip, categoryId }: EditTripFormProps) {
 
   const handleUpdate = handleSubmit(async (data) => {
     startUpdateTransition(async () => {
-      const result = await updateTripAction(trip.id, data);
+      const result = await updateTripAction(categoryId, trip.id, data);
       if (result.success) {
         alert("Trip updated successfully!");
         router.push("/trips/view");
