@@ -1,5 +1,5 @@
 import { getCategories } from "@/lib/data/get-categories";
-import { BackToTripsLink } from "@/components/BackToTripsLink";
+import { BackToTripsLink } from "@/features/public/trip-details/BackToTripsLink";
 import { findTripBySlug } from "@/lib/hooks/useTrip";
 import TripDetailsContent from "@/features/public/trip-details/TripDetailsContent";
 import { notFound } from "next/navigation";

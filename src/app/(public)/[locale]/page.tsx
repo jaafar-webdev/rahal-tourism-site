@@ -1,4 +1,4 @@
-import Header from "../../../components/Header";
+import Header from "../../../features/public/header/Header";
 import StatsSection from "@/features/public/about/components/StatsSection";
 import TripSection from "@/features/public/category-section/TripSection";
 import { getCategories } from "@/lib/data/get-categories";
