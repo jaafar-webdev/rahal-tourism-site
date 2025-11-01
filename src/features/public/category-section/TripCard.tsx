@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Category } from "@/types/category";
-import { Button } from "./ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { useTranslations } from "next-intl";
 
 interface TripCardProps {

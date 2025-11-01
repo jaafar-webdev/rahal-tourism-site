@@ -1,6 +1,6 @@
 import Header from "../../../components/Header";
 import StatsSection from "@/features/public/about/components/StatsSection";
-import TripSection from "@/components/TripSection";
+import TripSection from "@/features/public/category-section/TripSection";
 import { getCategories } from "@/lib/data/get-categories";
 
 export default async function Page({
