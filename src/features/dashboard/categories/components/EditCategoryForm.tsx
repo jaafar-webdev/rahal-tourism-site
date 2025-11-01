@@ -90,7 +90,7 @@ export function EditCategoryForm({ category }: EditCategoryFormProps) {
         <Button
           onClick={handleDelete}
           disabled={isDeleting}
-          variant="secondary"
+          variant="destructive"
         >
           {isDeleting ? "Deleting..." : "Delete Category"}
         </Button>

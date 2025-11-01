@@ -191,7 +191,7 @@ export function EditTripForm({ trip, categoryId }: EditTripFormProps) {
         <Button
           onClick={handleDelete}
           disabled={isDeleting}
-          variant="secondary"
+          variant="destructive"
         >
           {isDeleting ? "Deleting..." : "Delete Trip"}
         </Button>
