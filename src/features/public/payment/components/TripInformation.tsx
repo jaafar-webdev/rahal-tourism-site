@@ -1,4 +1,3 @@
-import React from "react";
 import SummaryField from "./SummaryField";
 import { TripData } from "../types";
 
