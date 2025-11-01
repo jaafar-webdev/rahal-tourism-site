@@ -15,7 +15,7 @@ const PolicyNote = ({ type, noteText, themeConfig }: PolicyNoteProps) => {
       className={`${themeConfig.noteBg} rounded-xl p-6 border ${themeConfig.noteBg} mt-8`}
     >
       <div className="flex items-center space-x-3">
-        <Icon className={`w-6 h-6 ${themeConfig.noteColor} flex-shrink-0`} />
+        <Icon className={`w-6 h-6 ${themeConfig.noteColor} shrink-0`} />
         <p className={`${themeConfig.noteText} text-sm font-medium`}>
           {noteText}
         </p>

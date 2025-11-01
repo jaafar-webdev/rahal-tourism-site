@@ -26,7 +26,7 @@ export default function PolicyPageLayout({
   const config = themeConfig[themeColor];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${config.gradient} py-8`}>
+    <div className={`min-h-screen bg-linear-to-br ${config.gradient} py-8`}>
       <div className="container mx-auto px-4 max-w-4xl">
         <PolicyHeader
           type={type}
