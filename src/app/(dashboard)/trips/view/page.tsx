@@ -1,4 +1,4 @@
-import { getTrips } from "@/lib/data/get-trips";
+import { getTrips } from "@/features/dashboard/categories/service/get-trips";
 import TripsTable from "@/features/dashboard/trips/components/TripsTable";
 
 export default async function ViewTripsPage() {

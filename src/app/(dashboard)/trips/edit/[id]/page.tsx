@@ -1,4 +1,4 @@
-import { getTrip } from "@/lib/data/get-trip";
+import { getTrip } from "@/features/dashboard/categories/service/get-trip";
 import { notFound } from "next/navigation";
 import { EditTripForm } from "@/features/dashboard/trips/components/EditTripForm";
 

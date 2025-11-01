@@ -1,4 +1,4 @@
-import { getOrders } from "@/lib/data/get-orders";
+import { getOrders } from "@/features/dashboard/orders/service/get-orders";
 import OrdersTable from "@/features/dashboard/orders/components/OrdersTable";
 
 export default async function ViewOrdersPage() {

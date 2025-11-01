@@ -1,4 +1,4 @@
-import { getCategory } from "@/lib/data/get-category";
+import { getCategory } from "@/features/dashboard/categories/service/get-category";
 import { notFound } from "next/navigation";
 import { EditCategoryForm } from "@/features/dashboard/categories/components/EditCategoryForm";
 
