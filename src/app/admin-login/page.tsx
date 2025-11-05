@@ -1,23 +1,22 @@
-import React from "react";
+"use client";
+
+import {
+  login,
+  LoginState,
+} from "@/features/dashboard/auth/actions/login-action";
 import InputField from "@/components/form/InputField";
 import { Button } from "@/components/ui/Button";
 import { FaLock, FaSignInAlt } from "react-icons/fa";
-
-// Server action placeholder
-async function authenticate(formData: FormData) {
-  "use server";
-  console.log("Authenticating...");
-  console.log("Username:", formData.get("username"));
-  console.log("Password:", formData.get("password"));
-}
+import { useActionState } from "react";
 
 export default function AdminLogin() {
+  const initialState: LoginState = {};
+  const [state, formAction] = useActionState(login, initialState);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 px-4">
       <div className="w-full max-w-md">
-        {/* Card Container */}
         <div className="bg-white/80 backdrop-blur-sm dark:bg-gray-800/90 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
-          {/* Header Section */}
           <div className="bg-linear-to-r from-blue-600 to-indigo-700 dark:from-blue-700 dark:to-indigo-800 px-8 py-6 text-center">
             <div className="flex items-center justify-center space-x-3 mb-2">
               <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
@@ -30,10 +29,8 @@ export default function AdminLogin() {
             </p>
           </div>
 
-          {/* Form Section */}
           <div className="px-8 py-8">
-            <form action={authenticate} className="space-y-6">
-              {/* Username Field */}
+            <form action={formAction} className="space-y-6">
               <div className="space-y-2">
                 <InputField
                   label="Username"
@@ -44,8 +41,6 @@ export default function AdminLogin() {
                   required
                 />
               </div>
-
-              {/* Password Field */}
               <div className="space-y-2">
                 <InputField
                   label="Password"
@@ -57,9 +52,14 @@ export default function AdminLogin() {
                 />
               </div>
 
-              {/* Submit Button */}
+              {state.error && (
+                <p className="text-red-500 text-sm text-center">
+                  {state.error}
+                </p>
+              )}
+
               <div className="pt-4">
-                <Button variant="outline" type="submit" fullWidth className="">
+                <Button variant="outline" type="submit" fullWidth>
                   <span className="flex items-center justify-center space-x-2">
                     <FaSignInAlt className="w-5 h-5" />
                     <span>Sign In</span>
@@ -68,13 +68,12 @@ export default function AdminLogin() {
               </div>
             </form>
 
-            {/* Additional Info */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Forgot your credentials?{" "}
                 <a
                   href="#"
-                  className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+                  className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
                 >
                   Contact administrator
                 </a>
