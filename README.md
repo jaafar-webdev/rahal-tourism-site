@@ -66,6 +66,8 @@ Built with a strong focus on **user experience**, **accessibility**, and **inter
 
 ## Architecture Overview
 
+## Architecture Overview
+
 ```mermaid
 graph TD
     A[Client] --> B(Next.js App Router)
@@ -74,7 +76,7 @@ graph TD
     C --> E[Firebase Firestore]
     D --> E
     F[Admin Dashboard] --> G[Protected Routes]
-    G --> H[JWT Session (2h)]
+    G --> H[JWT Session 2h]
     H --> E
     I[Zustand Store] --> J[Local + Persist]
 ```
